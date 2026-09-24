@@ -1,0 +1,17 @@
+public class Personne {
+    public String nom;
+    public int age;
+    public double poids;
+
+    public void afficher(){
+        System.out.println("Personne de nom="+nom + " age="+age +  " poids="+poids);
+    }
+}
+=======
+ public static void testPersonne(){
+        Personne p1 = new Personne();
+        p1.nom ="toto";
+        p1.age=12;
+        p1.poids=25;
+        p1.afficher();
+    }

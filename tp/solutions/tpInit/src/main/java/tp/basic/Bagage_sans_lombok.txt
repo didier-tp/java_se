@@ -1,0 +1,50 @@
+package tp;
+
+public class Bagage {
+    private String label;
+    private Integer poids; //en g
+    private Double volume; //en litre (dcm 3)
+
+    public Bagage(String label, Integer poids, Double volume) {
+        this.label = label;
+        this.poids = poids;
+        this.volume = volume;
+    }
+
+    public Bagage() {
+        //all as null by default
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    @Override
+    public String toString() {
+        return "Bagage{" +
+                "label='" + label + '\'' +
+                ", poids=" + poids +
+                ", volume=" + volume +
+                '}';
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public Integer getPoids() {
+        return poids;
+    }
+
+    public void setPoids(Integer poids) {
+        this.poids = poids;
+    }
+
+    public Double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Double volume) {
+        this.volume = volume;
+    }
+}
