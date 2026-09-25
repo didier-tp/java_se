@@ -22,8 +22,14 @@ public class MyCsvApp {
 		myApp.loadProducts();
 		myApp.computeStats();
 		myApp.computeStatsByCategories();
+
 		myApp.writeStats();
+
 		myApp.writeSortedProducts();
+		//MyGenericCsvUtil.decrire("tp.csv.Produit");
+		myApp.writeSortedProductsGenericWay();//variante generique avec intropection
+
+
 		myApp.writeStatsByCategories();
 	}
 	
@@ -86,6 +92,11 @@ public class MyCsvApp {
     	this.sortProductsByPrice();
     	csvUtil.writeProductFile(this.listeProduits,"produits_tries_par_prix.csv");
     }
+
+	private void writeSortedProductsGenericWay() {
+		this.sortProductsByPrice();
+		MyGenericCsvUtil.writeValuesAsCsvFile(this.listeProduits, "produits_tries_par_prix_generic_way.csv");
+	}
     
     private void writeStatsByCategories() {
 		csvUtil.writeStatFileFromCategorieMap(mapStatsByCategorie);

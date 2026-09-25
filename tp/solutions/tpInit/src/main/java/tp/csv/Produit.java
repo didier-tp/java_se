@@ -3,7 +3,10 @@ package tp.csv;
 public class Produit {
     private Integer numero;
     private String label;
+
+	@CsvIgnore //like @JsonIgnore
     private String categorie;
+
     private Double prix;
     private Double poids;
    

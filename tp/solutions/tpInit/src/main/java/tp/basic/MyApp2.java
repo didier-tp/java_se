@@ -16,6 +16,7 @@ public class MyApp2 {
         testString();
         System.out.println("la racine carrée de 81 est " + Math.sqrt(81));
         testListe();
+        //testGenericMyStack();
         //testerScanner();
         testDates();
     }
@@ -70,6 +71,20 @@ public class MyApp2 {
         System.out.println("inverse="+inverse);
     }
 
+    public static void testGenericMyStack() {
+        MyStack<Integer> pileEntiers = new MyStack<Integer>();
+        pileEntiers.push(2);
+        pileEntiers.push(1);
+        System.out.println(pileEntiers.pop());//1
+        System.out.println(pileEntiers.pop());//2
+
+        MyStack<String> pileChaines = new MyStack<String>();
+        pileChaines.push("abc");
+        pileChaines.push("def");
+        System.out.println(pileChaines.pop());//"def"
+        System.out.println(pileChaines.pop());//"abc"
+    }
+
     public static void testListe() {
         System.out.println("testListe");
         List<String> liste1 = new ArrayList<>();
@@ -115,6 +130,7 @@ public class MyApp2 {
         int somme = x+y;
         System.out.printf("pour x=%d et y=%d la somme=x+y vaut %d",x,y,somme);
     }
+
 
     public static void testDates(){
         LocalDateTime maintenant = LocalDateTime.now();

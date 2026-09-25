@@ -1,0 +1,30 @@
+package tp.thread;
+
+public class TacheCafe implements Runnable {
+
+	private boolean estLong =false;
+
+	TacheCafe(boolean estLong){
+		this.estLong=estLong;
+	}
+
+	TacheCafe(){
+		this(false);
+	}
+
+	String longOuCourt(){
+    	return estLong?"long":"court";
+    }
+
+	@Override
+	public void run() {
+		MyThreadUtil.afficherMessage("café " + longOuCourt() +" en début préparation");
+		try {
+			Thread.sleep(this.estLong?4000:2000); //4000ms de pause pour cafe long, 2000 pour café court
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		MyThreadUtil.afficherMessage("café " + longOuCourt() +" prêt");
+	}
+
+}

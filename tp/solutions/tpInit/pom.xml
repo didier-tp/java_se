@@ -43,6 +43,12 @@
             <version>2.25.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
 
        <!--
         <dependency>
@@ -75,5 +81,22 @@
                </dependency>
                -->
            </dependencies>
+
+       <build>
+           <finalName>${project.artifactId}</finalName>
+           <plugins>
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-jar-plugin</artifactId>
+                   <configuration>
+                       <archive>
+                           <manifest>
+                               <mainClass>tp.basic.DevinerNombreAppV2</mainClass>
+                           </manifest>
+                       </archive>
+                   </configuration>
+               </plugin>
+           </plugins>
+       </build>
 
        </project>
