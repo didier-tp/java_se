@@ -26,11 +26,19 @@ public class MyApp1 {
         Personne p1=null;
         p1=new Personne();
         p1.afficher();
-        p1.nom="didier";
-        p1.age=18;
-        p1.poids=90.0;
+        p1.setNom("didier");
+        p1.setAge(18);
+        p1.setPoids(90.0);
         p1.afficher();
-        p1.age=-2567;
+        System.out.println("p1="+p1.toString());
+        p1.setAge(-2567);
         p1.afficher();
+        Personne p2 = new Personne("toto", 25 , 82.5);
+        p2.afficher();
+        Personne p3 = new Personne("toto", 25 , 82.5);
+        if(p2.equals(p3)) //bon comportement que si generate .equals() sur classe Personne
+            System.out.println("p2 et p3 ont mêmes valeurs internes");
+        else
+            System.out.println("p2 et p3 ont valeurs internes différentes");
     }
 }

@@ -1,13 +1,80 @@
 package tp;
 
-public class Personne {
-    public String nom;
-    //public int age;
-    public Integer age;
-    public Double poids;
+import java.util.Objects;
 
+public class Personne {
+    private String nom;
+
+    //private int age; //0  default
+    private Integer age;//null default
+    private Double poids;
+
+    public Personne(String nom, Integer age, Double poids) {
+        this.nom = nom;
+        this.age = age;
+        this.poids = poids;
+    }
+
+    public Personne(String nom){
+        //this(nom,0,0.0);
+        this(nom,null,null);
+    }
+
+    public Personne() {
+    }
+
+    @Override
+    public String toString() {
+        return "Personne{" +
+                "nom='" + nom + '\'' +
+                ", age=" + age +
+                ", poids=" + poids +
+                '}';
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        //this.age = age;
+        if(age>=0)
+            this.age=age;
+        else {
+            System.out.println("nouvel age demandé invalide (négatif) , this.age inchangé");
+            //throw new RuntimeException("nouvel age demandé invalide (négatif)");
+        }
+    }
+
+    public Double getPoids() {
+        return poids;
+    }
+
+    public void setPoids(Double poids) {
+        this.poids = poids;
+    }
 
     public void afficher(){
-        System.out.println("Personne nom="+nom+ " age=" + age + " poids=" + poids);
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Personne personne = (Personne) o;
+        return Objects.equals(nom, personne.nom) && Objects.equals(age, personne.age) && Objects.equals(poids, personne.poids);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nom, age, poids);
     }
 }
