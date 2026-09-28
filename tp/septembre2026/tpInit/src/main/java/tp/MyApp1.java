@@ -25,6 +25,7 @@ public class MyApp1 {
     public static void testPersonne(){
         Personne p1=null;
         p1=new Personne();
+        p1.afficher();
         p1.nom="didier";
         p1.age=18;
         p1.poids=90.0;

@@ -2,9 +2,9 @@ package tp;
 
 public class Personne {
     public String nom;
-    public int age;
-    //public Integer age;
-    public double poids;
+    //public int age;
+    public Integer age;
+    public Double poids;
 
 
     public void afficher(){
