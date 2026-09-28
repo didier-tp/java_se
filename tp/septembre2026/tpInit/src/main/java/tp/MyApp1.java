@@ -27,6 +27,7 @@ public class MyApp1 {
         p1=new Personne();
         p1.afficher();
         p1.setNom("didier");
+        //p1.age=18; //interdit si age est "private"
         p1.setAge(18);
         p1.setPoids(90.0);
         p1.afficher();
