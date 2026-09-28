@@ -1,5 +1,8 @@
 package tp;
 
+
+import java.util.Date;
+
 public class MyApp2 {
 
     static void main() {
@@ -7,6 +10,7 @@ public class MyApp2 {
         testTableauMoyenne();
         testString();
         System.out.println("racine carre de 81="+Math.sqrt(81));
+        Date d1 = new Date();
     }
 
     static void testBagage(){
