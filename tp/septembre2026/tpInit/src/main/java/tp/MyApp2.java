@@ -6,6 +6,7 @@ public class MyApp2 {
         //testBagage();
         testTableauMoyenne();
         testString();
+        System.out.println("racine carre de 81="+Math.sqrt(81));
     }
 
     static void testBagage(){

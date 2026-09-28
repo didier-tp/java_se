@@ -41,5 +41,13 @@ public class MyApp1 {
             System.out.println("p2 et p3 ont mêmes valeurs internes");
         else
             System.out.println("p2 et p3 ont valeurs internes différentes");
+
+        if(p1.estMajeur())
+            System.out.println("p2 est majeur avec age=" + p2.getAge());
+        else
+            System.out.println("p2 n'est pas majeur , il est mineur avec age=" + p2.getAge());
+        System.out.println("espéranceVie initiale = " + Personne.getEsperanceVie());
+        Personne.setEsperanceVie(84.1);
+        System.out.println("nouvelle espéranceVie = " + Personne.getEsperanceVie());
     }
 }

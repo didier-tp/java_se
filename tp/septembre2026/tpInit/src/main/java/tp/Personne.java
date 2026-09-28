@@ -9,6 +9,23 @@ public class Personne {
     private Integer age;//null default
     private Double poids;
 
+    public static final int AGE_MAJORITE=18;
+
+    private static double esperanceVie = 83.2;
+
+    public static double getEsperanceVie() {
+        return esperanceVie;
+    }
+
+    public static void setEsperanceVie(double esperanceVie) {
+        Personne.esperanceVie = esperanceVie;
+    }
+
+    public boolean estMajeur(){
+        return (this.age >= Personne.AGE_MAJORITE);
+    }
+
+
     public Personne(String nom, Integer age, Double poids) {
         this.nom = nom;
         this.age = age;
