@@ -42,7 +42,7 @@ public class MyApp1 {
         else
             System.out.println("p2 et p3 ont valeurs internes différentes");
 
-        if(p1.estMajeur())
+        if(p2.estMajeur())
             System.out.println("p2 est majeur avec age=" + p2.getAge());
         else
             System.out.println("p2 n'est pas majeur , il est mineur avec age=" + p2.getAge());
