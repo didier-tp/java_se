@@ -96,12 +96,12 @@ public class Personne {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Personne personne = (Personne) o;
-        return Objects.equals(nom, personne.nom) && Objects.equals(age, personne.age) && Objects.equals(poids, personne.poids);
+        return Objects.equals(nom, personne.nom) && Objects.equals(age, personne.age) && Objects.equals(poids, personne.poids) && genre == personne.genre;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nom, age, poids);
+        return Objects.hash(nom, age, poids, genre);
     }
 
     public Genre getGenre() {
