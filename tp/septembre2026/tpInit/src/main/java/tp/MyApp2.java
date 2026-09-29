@@ -1,7 +1,9 @@
 package tp;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MyApp2 {
 
@@ -9,8 +11,9 @@ public class MyApp2 {
         //testBagage();
         testTableauMoyenne();
         testString();
-        System.out.println("racine carre de 81="+Math.sqrt(81));
-        Date d1 = new Date();
+        //System.out.println("racine carre de 81="+Math.sqrt(81));
+        testListe();
+        testGenericMyStack();
     }
 
     static void testBagage(){
@@ -59,6 +62,56 @@ public class MyApp2 {
         }
         String inverse=sb.toString();
         System.out.println("inverse="+inverse);
+    }
+
+    public static void testGenericMyStack() {
+        System.out.println("---- MyStack<Integer> -----");
+        MyStack<Integer> pileEntiers = new MyStack<Integer>();
+        pileEntiers.push(2);
+        pileEntiers.push(1);
+        System.out.println(pileEntiers.pop());//1
+        System.out.println(pileEntiers.pop());//2
+
+        System.out.println("---- MyStack<String> -----");
+        MyStack<String> pileChaines = new MyStack<String>();
+        pileChaines.push("abc");
+        pileChaines.push("def");
+        System.out.println(pileChaines.pop());//"def"
+        System.out.println(pileChaines.pop());//"abc"
+    }
+
+    public static void testListe() {
+        System.out.println("testListe");
+        List<String> liste1 = new ArrayList<>();
+        liste1.add("lundi"); liste1.add("mardi"); liste1.add("mercredi");
+
+        for(String s : liste1)
+            System.out.println("s="+s);
+
+        System.out.println("liste initiale=" + liste1.toString());
+
+        List<String> listeMaj = new ArrayList<>();
+        for(String s : liste1) {
+            String sMaj = s.toUpperCase();
+            listeMaj.add(sMaj);
+        }
+        liste1 = listeMaj;
+
+        System.out.println("liste en majuscule=" + liste1.toString());
+        System.out.println("taille de la liste=" + liste1.size());
+        liste1.remove("LUNDI");
+        System.out.println("nouvelle taille de la liste=" + liste1.size());
+        System.out.println("liste apres suppression=" + liste1.toString());
+
+        List<Double> liste2 = new ArrayList<>();
+        liste2.add(5.0); //liste2.add(new Double(5.0));
+        liste2.add(4.0);
+        liste2.add(6.0);
+        double somme=0;
+        for(double val : liste2)
+            somme+=val;
+        System.out.println("moyenne = " + (somme/liste2.size()) + " pour liste2="+liste2);
+
     }
 
 }
