@@ -1,6 +1,7 @@
 package tp;
 
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -125,6 +126,7 @@ public class MyApp2 {
         System.out.println("Veuillez saisir les valeurs de x et y (nombres entiers sans virgule)");
         System.out.print("x=");
         x=scanner.nextInt();
+        //x=Integer.parseInt(JOptionPane.showInputDialog(null,"valeur de x ?"));
         System.out.print("y=");
         y=scanner.nextInt();
         int somme = x+y;
