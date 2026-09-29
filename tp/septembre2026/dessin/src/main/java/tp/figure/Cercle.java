@@ -3,7 +3,7 @@ package tp.figure;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class Cercle extends Figure2D {
+public class Cercle extends Figure2D implements Surface {
     private int cx;//x du centre du cercle
     private int cy;//y du centre du cercle
     private int r; //rayon
@@ -75,5 +75,18 @@ public class Cercle extends Figure2D {
 
     public void setR(int r) {
         this.r = r;
+    }
+
+    @Override
+    public void translater(int dx, int dy) {
+        this.cx += dx; //cx =cx +dx;
+        this.cy += dy; //cy =cy +dy;
+    }
+
+    @Override
+    public void zoomer(double coeff) {
+        this.r = (int) (this.r * coeff);
+        this.cx = (int) (this.cx * coeff);
+        this.cy = (int) (this.cy * coeff);
     }
 }

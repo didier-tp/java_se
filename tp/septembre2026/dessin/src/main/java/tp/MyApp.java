@@ -1,9 +1,6 @@
 package tp;
 
-import tp.figure.Cercle;
-import tp.figure.Figure2D;
-import tp.figure.Ligne;
-import tp.figure.Rectangle;
+import tp.figure.*;
 import tp.svg.MySvgUtil;
 
 import java.util.ArrayList;
@@ -38,8 +35,10 @@ public class MyApp {
         System.out.println(globalSvgContent); //V1
 
         for(Figure2D figure : listeFigures){
-            System.out.println("\t" + figure.typeFig(true));
+            System.out.println("\t typeFig=" + figure.typeFig(true));
         }
+
+        changeFigures(listeFigures);
 
         /*
         //exemple de code pas astucieux (PAS BIEN):
@@ -54,5 +53,25 @@ public class MyApp {
             }
         }
         */
+    }
+
+    public static void changeFigures(List<Figure2D> listeFig){
+        System.out.println("longeur totale initiale=" + longeurTotale(listeFig));
+        //...
+    }
+
+    public static double longeurTotale(List<Figure2D> listeFig){
+        double longeurTotale = 0;
+        for(Figure2D fig : listeFig){
+            if(fig instanceof Surface){
+                Surface s = (Surface) fig;
+                longeurTotale += s.perimetre();
+            }
+            else if(fig instanceof Ligne){
+                Ligne l = (Ligne) fig;
+                longeurTotale += l.longueur();
+            }
+        }
+        return longeurTotale;
     }
 }

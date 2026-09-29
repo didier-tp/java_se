@@ -3,7 +3,7 @@ package tp.figure;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class Ligne extends Figure2D {
+public class Ligne extends Figure2D{
     private int x1;
     private int y1;
     private int x2;
@@ -74,5 +74,19 @@ public class Ligne extends Figure2D {
 
     public void setY2(int y2) {
         this.y2 = y2;
+    }
+
+    @Override
+    public void translater(int dx, int dy) {
+         x1+=dx; y1+=dy; x2+=dx; y2+=dy;
+    }
+
+    @Override
+    public void zoomer(double coeff) {
+        x1*=coeff; y1*=coeff; x2*=coeff; y2*=coeff;
+    }
+
+    public double longueur(){
+        return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));//formule de pythagore
     }
 }

@@ -3,7 +3,7 @@ package tp.figure;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class Rectangle extends Figure2D {
+public class Rectangle extends Figure2D  implements Surface {
     private int x;
     private int y;
     private int width;
@@ -82,5 +82,15 @@ public class Rectangle extends Figure2D {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    @Override
+    public void translater(int dx, int dy) {
+        x+=dx; y+=dy;
+    }
+
+    @Override
+    public void zoomer(double coeff) {
+        x*=coeff; y*=coeff; width*=coeff; height*=coeff;
     }
 }
