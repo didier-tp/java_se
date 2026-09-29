@@ -30,13 +30,14 @@ public class MyApp1 {
         //p1.age=18; //interdit si age est "private"
         p1.setAge(18);
         p1.setPoids(90.0);
+        p1.setGenre(Personne.Genre.HOMME);
         p1.afficher();
         System.out.println("p1="+p1.toString());
         p1.setAge(-2567);
         p1.afficher();
-        Personne p2 = new Personne("toto", 25 , 82.5);
+        Personne p2 = new Personne("toto", 25 , 82.5 , Personne.Genre.HOMME);
         p2.afficher();
-        Personne p3 = new Personne("toto", 25 , 82.5);
+        Personne p3 = new Personne("julie", 25 , 82.5 , Personne.Genre.FEMME);
         if(p2.equals(p3)) //bon comportement que si generate .equals() sur classe Personne
             System.out.println("p2 et p3 ont mêmes valeurs internes");
         else

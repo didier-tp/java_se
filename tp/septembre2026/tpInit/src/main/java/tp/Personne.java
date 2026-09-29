@@ -9,6 +9,9 @@ public class Personne {
     private Integer age;//null default
     private Double poids;
 
+    public enum Genre { HOMME,FEMME,INDETERMINE };
+    private Genre genre = Genre.INDETERMINE; //valeur par défaut
+
     public static final int AGE_MAJORITE=18;
 
     private static double esperanceVie = 83.2;
@@ -32,6 +35,11 @@ public class Personne {
         this.poids = poids;
     }
 
+    public Personne(String nom, Integer age, Double poids,Genre genre) {
+        this(nom,age,poids);
+        this.genre=genre;
+    }
+
     public Personne(String nom){
         //this(nom,0,0.0);
         this(nom,null,null);
@@ -46,6 +54,7 @@ public class Personne {
                 "nom='" + nom + '\'' +
                 ", age=" + age +
                 ", poids=" + poids +
+                ", genre=" + genre +
                 '}';
     }
 
@@ -93,5 +102,13 @@ public class Personne {
     @Override
     public int hashCode() {
         return Objects.hash(nom, age, poids);
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 }
