@@ -3,6 +3,7 @@ package tp;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MyApp2 {
@@ -103,7 +104,10 @@ public class MyApp2 {
         System.out.println("nouvelle taille de la liste=" + liste1.size());
         System.out.println("liste apres suppression=" + liste1.toString());
 
-        List<Double> liste2 = new ArrayList<>();
+        //IMPOSSIBLE: List<Double> liste2 = new List<>(); car List<> est abstrait (interface sans code)
+        //ArrayList<Double> liste2 = new ArrayList<>(); //possible mais un peu trop rigide
+        //List<Double> liste2 = new ArrayList<>(); //ok
+        List<Double> liste2 = new LinkedList<>(); //egalement possible
         liste2.add(5.0); //liste2.add(new Double(5.0));
         liste2.add(4.0);
         liste2.add(6.0);
