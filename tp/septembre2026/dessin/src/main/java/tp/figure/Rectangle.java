@@ -13,7 +13,7 @@ public class Rectangle extends Figure2D {
     public String toSvgSubString() {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
-        ps.printf("<rect x='100' y='180' width='200' height='50'",
+        ps.printf("<rect x='%d' y='%d' width='%d' height='%d'",
                 this.x ,
                 this.y ,
                 this.width ,
@@ -48,7 +48,7 @@ public class Rectangle extends Figure2D {
     }
 
     public int getX() {
-        return x;
+        return this.x;
     }
 
     public void setX(int x) {

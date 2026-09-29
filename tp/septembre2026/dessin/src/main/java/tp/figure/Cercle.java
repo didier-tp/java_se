@@ -8,6 +8,18 @@ public class Cercle extends Figure2D {
     private int cy;//y du centre du cercle
     private int r; //rayon
 
+
+    @Override
+    public String toSvgSubString() {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(baos);
+        ps.printf("<circle cx='%d' cy='%d' r='%d'",
+                this.cx ,
+                this.cy ,
+                this.r);
+        return baos.toString();
+    }
+
     public Cercle() {
     }
 
@@ -26,16 +38,6 @@ public class Cercle extends Figure2D {
         return Math.PI * Math.pow(this.r,2);
     }
 
-    @Override
-    public String toSvgSubString() {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(baos);
-        ps.printf("<circle cx='300' cy='100' r='30'",
-                this.cx ,
-                this.cy ,
-                this.r);
-        return baos.toString();
-    }
 
     @Override
     public String toString() {

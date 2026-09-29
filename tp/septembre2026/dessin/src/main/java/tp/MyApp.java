@@ -31,9 +31,24 @@ public class MyApp {
 
         List<Figure2D> listeFigures = new ArrayList<>();
         listeFigures.add(l); listeFigures.add(r); listeFigures.add(c);
+        listeFigures.add(new Cercle(150,100,50,"blue",3,"red"));
 
         System.out.println("---- globalSvgContent or generate dessin.svg ---");
         String globalSvgContent = MySvgUtil.generateGlobalSvgContent(listeFigures); //v1
         System.out.println(globalSvgContent); //V1
+
+        /*
+        //exemple de code pas astucieux (PAS BIEN):
+        for(Figure2D figure : listeFigures){
+            if( figure instanceof Cercle){
+                Cercle cercle = (Cercle) figure;
+                //cercle.genererSvgPourCercle();
+            }
+            else if( figure instanceof Rectangle){
+                Rectangle rectangle = (Rectangle) figure;
+                //rectangle.genererSvgPourRectangle();
+            }
+        }
+        */
     }
 }
