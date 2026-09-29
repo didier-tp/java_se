@@ -4,6 +4,7 @@ package tp;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class MyApp2 {
 
@@ -14,6 +15,7 @@ public class MyApp2 {
         //System.out.println("racine carre de 81="+Math.sqrt(81));
         testListe();
         testGenericMyStack();
+        testerScanner();
     }
 
     static void testBagage(){
@@ -115,6 +117,18 @@ public class MyApp2 {
             somme+=val;
         System.out.println("moyenne = " + (somme/liste2.size()) + " pour liste2="+liste2);
 
+    }
+
+    public static void testerScanner(){
+        int x=0, y=0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Veuillez saisir les valeurs de x et y (nombres entiers sans virgule)");
+        System.out.print("x=");
+        x=scanner.nextInt();
+        System.out.print("y=");
+        y=scanner.nextInt();
+        int somme = x+y;
+        System.out.printf("pour x=%d et y=%d la somme=x+y vaut %d",x,y,somme);
     }
 
 }
