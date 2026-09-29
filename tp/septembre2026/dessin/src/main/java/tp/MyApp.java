@@ -10,13 +10,13 @@ public class MyApp {
     static void main() {
         System.out.println("cette application va générer un fichier dessin.svg");
 
-        Rectangle r = new Rectangle(100,180,200,50,"red",5,"blue");
+        Rectangle r = new Rectangle(100,80,1200,50,"red",5,"blue");
         System.out.println(r.toString());
         System.out.println(r.toSvgStringWithColor());
         System.out.println("r.perimetre="+r.perimetre());
         System.out.println("r.aire="+r.aire());
 
-        Cercle c = new Cercle(100,180,80,"red",5,"green");
+        Cercle c = new Cercle(60,80,40,"red",5,"green");
         System.out.println(c.toSvgStringWithColor());
         System.out.println(c.toString());
         System.out.println("c.perimetre="+c.perimetre());
@@ -28,7 +28,7 @@ public class MyApp {
 
         List<Figure2D> listeFigures = new ArrayList<>();
         listeFigures.add(l); listeFigures.add(r); listeFigures.add(c);
-        listeFigures.add(new Cercle(150,100,50,"blue",3,"red"));
+        //listeFigures.add(new Cercle(150,100,50,"blue",3,"red"));
 
         System.out.println("---- globalSvgContent or generate dessin.svg ---");
         String globalSvgContent = MySvgUtil.generateGlobalSvgContent(listeFigures); //v1
@@ -57,7 +57,17 @@ public class MyApp {
 
     public static void changeFigures(List<Figure2D> listeFig){
         System.out.println("longeur totale initiale=" + longeurTotale(listeFig));
-        //...
+        for(Figure2D fig : listeFig){
+            fig.translater(30,20);
+        }
+        System.out.println("longeur totale après translation(dx=30,dy=20) =" + longeurTotale(listeFig));
+        for(Figure2D fig : listeFig){
+            fig.zoomer(2.0);
+        }
+        System.out.println("longeur totale après zoom de coeff=2.0 =" + longeurTotale(listeFig));
+        System.out.println("---- globalSvgContent after translation(dx=30,dy=20) et zoom coeff=2 ---");
+        String globalSvgContent = MySvgUtil.generateGlobalSvgContent(listeFig); //v1
+        System.out.println(globalSvgContent); //V1
     }
 
     public static double longeurTotale(List<Figure2D> listeFig){
