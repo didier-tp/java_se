@@ -17,6 +17,11 @@ public class Ligne extends Figure2D {
         this.y2 = y2;
     }
 
+    public String typeFig(boolean majuscule){
+        if(majuscule) return "Ligne".toUpperCase();
+        else return "Ligne";
+    }
+
     @Override
     public String toSvgSubString() {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

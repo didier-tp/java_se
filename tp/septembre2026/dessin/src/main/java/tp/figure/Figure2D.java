@@ -7,6 +7,11 @@ public abstract class Figure2D {
     protected String couleurFond; //null par défaut ("none" en svg)
     //design pattern "template method" avec polymorphisme sur sous tâche abstraite .
 
+    public String typeFig(boolean majuscule){
+        if(majuscule) return "Figure2D".toUpperCase();
+        else return "Figure2D";
+    }
+
     public String toSvgStringWithColor() {
 //polymorphisme sur l'appel à this.toSvgSubString();
 //où this pourra référencer une instance de Cercle ou Ligne ou Rectangle

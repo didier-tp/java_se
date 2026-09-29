@@ -37,6 +37,10 @@ public class MyApp {
         String globalSvgContent = MySvgUtil.generateGlobalSvgContent(listeFigures); //v1
         System.out.println(globalSvgContent); //V1
 
+        for(Figure2D figure : listeFigures){
+            System.out.println("\t" + figure.typeFig(true));
+        }
+
         /*
         //exemple de code pas astucieux (PAS BIEN):
         for(Figure2D figure : listeFigures){

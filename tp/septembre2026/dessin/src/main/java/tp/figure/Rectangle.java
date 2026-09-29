@@ -47,6 +47,11 @@ public class Rectangle extends Figure2D {
                 "} héritant de " + super.toString();
     }
 
+    public String typeFig(boolean majuscule){
+        if(majuscule) return "Rectangle".toUpperCase();
+        else return "Rectangle";
+    }
+
     public int getX() {
         return this.x;
     }

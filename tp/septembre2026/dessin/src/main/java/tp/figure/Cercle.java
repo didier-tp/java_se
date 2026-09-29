@@ -8,6 +8,11 @@ public class Cercle extends Figure2D {
     private int cy;//y du centre du cercle
     private int r; //rayon
 
+    @Override
+    public String typeFig(boolean majuscule) {
+        if(majuscule) return "Cercle".toUpperCase();
+        else return "Cercle";
+    }
 
     @Override
     public String toSvgSubString() {
