@@ -1,0 +1,9 @@
+2026-09-30 12:32:15.374 DEBUG [main] [tp.MyApp.main(MyApp.java:31)] - nomArg=dy valArg=20
+
+2026-09-30 12:32:15.376 DEBUG [main] [tp.MyApp.main(MyApp.java:31)] - nomArg=dx valArg=30
+
+2026-09-30 12:32:15.378 DEBUG [main] [tp.MyApp.main(MyApp.java:31)] - nomArg=coeffZoom valArg=1.a5
+
+2026-09-30 12:32:15.381 ERROR [main] [tp.MyApp.main(MyApp.java:43)] - coeffZoom=1.a5 est invalide , ca doit être numerique
+2026-09-30 12:32:15.382 INFO [main] [tp.MyApp.main(MyApp.java:46)] - coeffZoom=1.0 dx=30 dy=20 typeFig=null
+

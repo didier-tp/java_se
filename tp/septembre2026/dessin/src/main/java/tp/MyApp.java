@@ -28,7 +28,7 @@ public class MyApp {
             String[] argParts = argSansTiretTiret.split("=");
             String nomArg = argParts[0];
             String valArg = argParts[1];
-            log.debug("nomArg=%s valArg=%s\n",nomArg,valArg);
+            log.debug("nomArg={} valArg={}\n",nomArg,valArg);
             try {
             switch(nomArg){
                 case "dx": dx=Integer.parseInt(valArg);    break;
@@ -43,7 +43,7 @@ public class MyApp {
                 log.error( nomArg + "=" + valArg + " est invalide , ca doit être numerique");
             }
         }
-        log.info("coeffZoom=%f dx=%d dy=%d typeFig=%s\n" , coeffZoom , dx , dy , typeFig);
+        log.info("coeffZoom={} dx={} dy={} typeFig={}\n" , coeffZoom , dx , dy , typeFig);
         enchainerTransformationsEtGenerationFichierSvg(coeffZoom,dx,dy,typeFig);
     }
 
