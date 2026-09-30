@@ -28,11 +28,17 @@ public class Personne {
         return (this.age >= Personne.AGE_MAJORITE);
     }
 
+    public static int comparerDeuxPersonnesParNom(Personne pers1,Personne pers2){
+        if (pers2.getNom()!=null && pers1.getNom()!=null)
+            return pers1.getNom().compareTo(pers2.getNom());
+        else
+            return 0;
+    }
 
     public Personne(String nom, Integer age, Double poids) {
         this.nom = nom;
-        //this.age = age;
-        this.setAge(age);
+        this.age = age;
+        //this.setAge(age);
         this.poids = poids;
     }
 

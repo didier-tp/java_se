@@ -27,7 +27,7 @@ public class MyApp1 {
         System.out.println("chA="+chA);
     }
 
-    public static void testerCollectionPersonne(){
+    public static void testerCollectionPersonneV1SansExpression(){
         Personne p1 = new Personne("jean Bon", 35 , 62.5 );
         Personne p2 = new Personne("toto", 25 , 82.5 );
 
@@ -70,6 +70,39 @@ public class MyApp1 {
         ComparateurPersonneParAge comparateurDePersonneParAge = new ComparateurPersonneParAge();
         Collections.sort(listePersonne,comparateurDePersonneParAge);
         System.out.println("----apres tri par age décroissant----");
+        for(Personne p : listePersonne) {
+            System.out.println("\t" + p); //"\t" pour tabulation , "\n" pour saut de ligne
+        }
+    }
+
+    //V2 avec lambda expression
+    public static void testerCollectionPersonne(){
+        Personne p1 = new Personne("jean Bon", 35 , 62.5 );
+        Personne p2 = new Personne("toto", 25 , 82.5 );
+
+        List<Personne> listePersonne = new ArrayList<>();
+        listePersonne.add(p1);
+        listePersonne.add(p2);
+        listePersonne.add ( new Personne("luc" , 40 , 77.7));
+        listePersonne.add ( new Personne("zorro" , null , 87.7));
+        System.out.println("----ordre initial----");
+        for(Personne p : listePersonne){
+            System.out.println("\t" + p);
+        }
+
+
+        //Collections.sort(listePersonne, (pers1,pers2) -> pers1.getNom().compareTo(pers2.getNom()) ) ;
+        Collections.sort(listePersonne,Personne::comparerDeuxPersonnesParNom);
+
+        System.out.println("----apres tri par nom----");
+        for(Personne p : listePersonne) {
+            System.out.println("\t" + p); //"\t" pour tabulation , "\n" pour saut de ligne
+        }
+
+
+        System.out.println("----apres tri par age décroissant----");
+        //Collections.sort(listePersonne,(pers1,pers2) -> pers2.getAge().compareTo(pers1.getAge()) ) ;
+        Collections.sort(listePersonne,(pers1,pers2) -> (pers2.getAge()!=null && pers1.getAge()!=null)?pers2.getAge().compareTo(pers1.getAge()):0 ) ;
         for(Personne p : listePersonne) {
             System.out.println("\t" + p); //"\t" pour tabulation , "\n" pour saut de ligne
         }
