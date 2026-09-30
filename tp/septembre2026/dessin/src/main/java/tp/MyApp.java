@@ -5,9 +5,41 @@ import tp.svg.MySvgUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MyApp {
-    static void main() {
+    static void main(String[] args) {
+        double coeffZoom = 1;
+        int dx=0;
+        int dy=0;
+        String typeFig=null;
+        //premiersTests();
+        //…..du code sera à ajouter ici ...
+        enchainerTransformationsEtGenerationFichierSvg(coeffZoom,dx,dy,typeFig);
+    }
+
+    public static List<Figure2D> buildListeFigures() {
+        List<Figure2D> listeFigures = new ArrayList<>();
+        listeFigures.add(new Rectangle(100,180,200,50,"black",5,"blue"));
+        listeFigures.add(new Ligne(150,100,250,100,"green",4, null));
+        listeFigures.add(new Cercle(100,100,30,"black",3,"red"));
+        return listeFigures;
+    }
+    public static void enchainerTransformationsEtGenerationFichierSvg(double coeffZoom ,
+                                                                      int dx, int dy , String typeFig) {
+        List<Figure2D> listeInitialeFigures = buildListeFigures();
+        List<Figure2D> listeTransformeeFigures =
+                listeInitialeFigures.stream()
+                //effecter une premiere transformation de type zoomer(coeffZoom)
+                //effecter une seconde transformation de type translation(dx,dy)
+                //filtrer selon le type de figure (typeFig , ex :"Cercle") via un test de type instanceof ...
+                        .collect(Collectors.toList());
+                //futur MySvgUtil.generateSvgFile(listeTransformeeFigures, "dessin2.svg");
+        String globalContent = MySvgUtil.generateGlobalSvgContent(listeTransformeeFigures);
+        System.out.println(globalContent);
+    }
+
+    static void premiersTests(){
         System.out.println("cette application va générer un fichier dessin.svg");
 
         Rectangle r = new Rectangle(100,80,1200,50,"red",5,"blue");
