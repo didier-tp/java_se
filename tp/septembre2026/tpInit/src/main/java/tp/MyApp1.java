@@ -39,7 +39,8 @@ public class MyApp1 {
             p1.setAge(-2567);
             p1.afficher();
         } catch (IllegalArgumentException e) {
-            throw new RuntimeException(e);
+        	e.printStackTrace();
+            //System.err.println(e.getMessage());
         }
 
 
