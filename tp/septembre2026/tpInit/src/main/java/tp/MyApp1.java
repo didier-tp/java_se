@@ -33,8 +33,34 @@ public class MyApp1 {
         p1.setGenre(Personne.Genre.HOMME);
         p1.afficher();
         System.out.println("p1="+p1.toString());
-        p1.setAge(-2567);
-        p1.afficher();
+
+
+        try {
+            p1.setAge(-2567);
+            p1.afficher();
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        /*
+        try {
+            p1.setAge(-2567);
+            p1.afficher();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //System.err.println(e.getMessage());
+            //System.out.println(e.getMessage()); //possible mais moins bien
+        }
+        */
+        /*
+        try {
+            (new Personne("toto" , -56 , 81.5 )).afficher();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //System.err.println(e.getMessage());
+        }*/
+
         Personne p2 = new Personne("toto", 25 , 82.5 , Personne.Genre.HOMME);
         p2.afficher();
         Personne p3 = new Personne("julie", 25 , 82.5 , Personne.Genre.FEMME);

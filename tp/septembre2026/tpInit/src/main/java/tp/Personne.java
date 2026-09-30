@@ -31,7 +31,8 @@ public class Personne {
 
     public Personne(String nom, Integer age, Double poids) {
         this.nom = nom;
-        this.age = age;
+        //this.age = age;
+        this.setAge(age);
         this.poids = poids;
     }
 
@@ -70,13 +71,14 @@ public class Personne {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(Integer age) throws IllegalArgumentException{
         //this.age = age;
         if(age>=0)
             this.age=age;
         else {
-            System.out.println("nouvel age demandé invalide (négatif) , this.age inchangé");
+            //System.out.println("nouvel age demandé invalide (négatif) , this.age inchangé"); //V1
             //throw new RuntimeException("nouvel age demandé invalide (négatif)");
+            throw new IllegalArgumentException("l'argument age de .setAge() est invalide car négatif, il doit être positif");
         }
     }
 
