@@ -40,8 +40,28 @@ public class MyApp1 {
             System.out.println("\t" + p);
         }
 
+        /*
         ComparateurPersonneParNom comparateurDePersonneParNom = new ComparateurPersonneParNom();
         Collections.sort(listePersonne,comparateurDePersonneParNom);
+        System.out.println("----apres tri par nom----");
+        for(Personne p : listePersonne) {
+            System.out.println("\t" + p); //"\t" pour tabulation , "\n" pour saut de ligne
+        }
+        */
+
+
+
+        Collections.sort(listePersonne,new /* classe imbriquée anonyme qui implements */
+           java.util.Comparator<Personne>(){
+               //debut code entre { } de la classe anonyme imbriquée
+               @Override
+               public int compare(Personne o1, Personne o2) {
+                   if(o1.getNom() != null)
+                       return o1.getNom().compareTo(o2.getNom());
+                   else return -1;
+               }
+           }//fin du code de la classe imbriquée
+           );
         System.out.println("----apres tri par nom----");
         for(Personne p : listePersonne) {
             System.out.println("\t" + p); //"\t" pour tabulation , "\n" pour saut de ligne
