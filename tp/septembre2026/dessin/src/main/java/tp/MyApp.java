@@ -23,10 +23,18 @@ public class MyApp {
             String nomArg = argParts[0];
             String valArg = argParts[1];
             System.out.printf("nomArg=%s valArg=%s\n",nomArg,valArg);
+            try {
             switch(nomArg){
-                case "dx":
-                    dx=Integer.parseInt(valArg);
+                case "dx": dx=Integer.parseInt(valArg);    break;
+                case "dy":
+                        dy=Integer.parseInt(valArg);
                     break;
+                case "coeffZoom":
+                        coeffZoom=Double.parseDouble(valArg);
+                    break;
+              }
+            } catch (NumberFormatException e) {
+                System.err.println( nomArg + "=" + valArg + " est invalide , ca doit être numerique");
             }
         }
         System.out.printf("coeffZoom=%f dx=%d dy=%d typeFig=%s\n" , coeffZoom , dx , dy , typeFig);
