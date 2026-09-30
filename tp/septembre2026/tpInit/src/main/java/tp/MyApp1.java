@@ -1,9 +1,14 @@
 package tp;
 
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+
 
 public class MyApp1 {
     static void main() {
@@ -12,6 +17,7 @@ public class MyApp1 {
         //testPersonne();
         //testerCollectionPersonne();
         testerStream();
+        testerForEachWithLambda();
     }
 
     public static void testElementaire(){
@@ -90,16 +96,29 @@ public class MyApp1 {
         //puis transformations avec noms en majuscules
         List<Personne> listePersonne = initListePersonnes();
         System.out.println("listePersonne initiale = " + listePersonne);
+        AtomicInteger nbPersMajeures= new AtomicInteger();
+        AtomicLong sommeAge = new AtomicLong();
         List<Personne> listePersonnesFiltreesTrieesEtTransformees =
                 listePersonne.stream()
                         .filter( (p)->p.getAge()>=18 )
                         .sorted( (p1,p2)->Integer.compare(p1.getAge(), p2.getAge()))
                         //.map( (p) -> { p.setNom(p.getNom().toUpperCase()); return p; } )
                         .map( (p) -> new Personne(p.getNom().toUpperCase(),p.getAge(),p.getPoids()) )
+                        .peek((p)-> {  nbPersMajeures.getAndIncrement();
+                                                sommeAge.addAndGet( p.getAge());  } )
                         .toList();
+        System.out.println("nombre de personnes majeures = " + nbPersMajeures.get());
+        System.out.println("age moyen  des personnes majeures = " + (double) sommeAge.get() / nbPersMajeures.get());
         System.out.println("listePersonnesFiltreesTrieesEtTransformees = " + listePersonnesFiltreesTrieesEtTransformees);
         System.out.println("listePersonne modifiée ou pas par effet de bord = " + listePersonne);
     }
+
+    public static void testerForEachWithLambda(){
+        List<Personne> listePersonne = initListePersonnes();
+        PersStat persStat = PersStat.buildStatViaForEachWithLambda(listePersonne);
+        System.out.println("persStat="+persStat);
+    }
+
 
     //V2 avec lambda expression
     public static void testerCollectionPersonne(){
@@ -132,6 +151,7 @@ public class MyApp1 {
         for(Personne p : listePersonne) {
             System.out.println("\t" + p); //"\t" pour tabulation , "\n" pour saut de ligne
         }
+
     }
 
     public static void testPersonne(){
@@ -189,5 +209,32 @@ public class MyApp1 {
         System.out.println("espéranceVie initiale = " + Personne.getEsperanceVie());
         Personne.setEsperanceVie(84.1);
         System.out.println("nouvelle espéranceVie = " + Personne.getEsperanceVie());
+    }
+}
+
+@ToString
+class PersStat{
+    private int nbPers;
+    private double sumAge;
+    private int averageAge;
+    Personne youngestPers=null;
+    Personne oldestPers = null;
+
+
+    public static PersStat buildStatViaForEachWithLambda(List<Personne> listePersonne){
+        PersStat persStat = new PersStat();
+        persStat.computeThisStatViaForEachWithLambda(listePersonne);
+        return persStat;
+    }
+    public void computeThisStatViaForEachWithLambda(List<Personne> listePersonne) {
+        listePersonne.forEach((p) -> {
+            this.nbPers++;
+            this.sumAge += p.getAge();
+            if (youngestPers == null) youngestPers = p;
+            else if (youngestPers.getAge() > p.getAge()) youngestPers = p;
+            if (oldestPers == null) oldestPers = p;
+            else if (oldestPers.getAge() < p.getAge()) oldestPers = p;
+        });
+        this.averageAge = (int) (this.sumAge / this.nbPers);
     }
 }
