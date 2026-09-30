@@ -1,5 +1,8 @@
 package tp;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import tp.figure.*;
 import tp.svg.MySvgUtil;
 
@@ -8,6 +11,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MyApp {
+
+    private static final Logger log= LoggerFactory.getLogger(tp.MyApp.class);
+
     static void main(String[] args) {
         double coeffZoom = 1;
         int dx=0;
@@ -22,7 +28,7 @@ public class MyApp {
             String[] argParts = argSansTiretTiret.split("=");
             String nomArg = argParts[0];
             String valArg = argParts[1];
-            System.out.printf("nomArg=%s valArg=%s\n",nomArg,valArg);
+            log.debug("nomArg=%s valArg=%s\n",nomArg,valArg);
             try {
             switch(nomArg){
                 case "dx": dx=Integer.parseInt(valArg);    break;
@@ -34,10 +40,10 @@ public class MyApp {
                     break;
               }
             } catch (NumberFormatException e) {
-                System.err.println( nomArg + "=" + valArg + " est invalide , ca doit être numerique");
+                log.error( nomArg + "=" + valArg + " est invalide , ca doit être numerique");
             }
         }
-        System.out.printf("coeffZoom=%f dx=%d dy=%d typeFig=%s\n" , coeffZoom , dx , dy , typeFig);
+        log.info("coeffZoom=%f dx=%d dy=%d typeFig=%s\n" , coeffZoom , dx , dy , typeFig);
         enchainerTransformationsEtGenerationFichierSvg(coeffZoom,dx,dy,typeFig);
     }
 
