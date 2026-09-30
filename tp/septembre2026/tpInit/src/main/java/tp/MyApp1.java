@@ -1,6 +1,7 @@
 package tp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,7 +10,8 @@ public class MyApp1 {
         System.out.println("Hello world");
         //testElementaire();
         //testPersonne();
-        testerCollectionPersonne();
+        //testerCollectionPersonne();
+        testerStream();
     }
 
     public static void testElementaire(){
@@ -73,6 +75,30 @@ public class MyApp1 {
         for(Personne p : listePersonne) {
             System.out.println("\t" + p); //"\t" pour tabulation , "\n" pour saut de ligne
         }
+    }
+
+    public static List<Personne> initListePersonnes(){
+        return Arrays.asList(new Personne("jean Bon", 35 , 62.5 ),
+                              new Personne("toto", 15 , 42.5 ) ,
+                              new Personne("luc" , 40 , 77.7),
+                              new Personne("titi" , 8 , 27.7)
+        );
+    }
+
+    public static void testerStream(){
+        //avec stream, enchaîner "filtrage des personnes majeures" , "tri selon age"
+        //puis transformations avec noms en majuscules
+        List<Personne> listePersonne = initListePersonnes();
+        System.out.println("listePersonne initiale = " + listePersonne);
+        List<Personne> listePersonnesFiltreesTrieesEtTransformees =
+                listePersonne.stream()
+                        .filter( (p)->p.getAge()>=18 )
+                        .sorted( (p1,p2)->Integer.compare(p1.getAge(), p2.getAge()))
+                        //.map( (p) -> { p.setNom(p.getNom().toUpperCase()); return p; } )
+                        .map( (p) -> new Personne(p.getNom().toUpperCase(),p.getAge(),p.getPoids()) )
+                        .toList();
+        System.out.println("listePersonnesFiltreesTrieesEtTransformees = " + listePersonnesFiltreesTrieesEtTransformees);
+        System.out.println("listePersonne modifiée ou pas par effet de bord = " + listePersonne);
     }
 
     //V2 avec lambda expression
