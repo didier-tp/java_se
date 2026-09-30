@@ -41,6 +41,7 @@ public class MyApp {
               }
             } catch (NumberFormatException e) {
                 log.error( nomArg + "=" + valArg + " est invalide , ca doit être numerique");
+                //throw new RuntimeException("erreur de conversion sur arg="+nomArg , e);
             }
         }
         log.info("coeffZoom={} dx={} dy={} typeFig={}\n" , coeffZoom , dx , dy , typeFig);
