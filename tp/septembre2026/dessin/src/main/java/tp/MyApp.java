@@ -15,13 +15,28 @@ public class MyApp {
         String typeFig=null;
         //premiersTests();
         //…..du code sera à ajouter ici ...
+
+        for(String arg : args){
+            //System.out.println(arg);  // --coeffZoom=1.5 ou bien --dx=20
+            String argSansTiretTiret = arg.substring(2);
+            String[] argParts = argSansTiretTiret.split("=");
+            String nomArg = argParts[0];
+            String valArg = argParts[1];
+            System.out.printf("nomArg=%s valArg=%s\n",nomArg,valArg);
+            switch(nomArg){
+                case "dx":
+                    dx=Integer.parseInt(valArg);
+                    break;
+            }
+        }
+        System.out.printf("coeffZoom=%f dx=%d dy=%d typeFig=%s\n" , coeffZoom , dx , dy , typeFig);
         enchainerTransformationsEtGenerationFichierSvg(coeffZoom,dx,dy,typeFig);
     }
 
     public static List<Figure2D> buildListeFigures() {
         List<Figure2D> listeFigures = new ArrayList<>();
         listeFigures.add(new Rectangle(100,180,200,50,"black",5,"blue"));
-        listeFigures.add(new Ligne(150,100,250,100,"green",4, null));
+        listeFigures.add(new Ligne(150,100,250,100,"green",4 , null));
         listeFigures.add(new Cercle(100,100,30,"black",3,"red"));
         return listeFigures;
     }
