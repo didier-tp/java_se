@@ -1,10 +1,15 @@
 package tp;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class MyApp1 {
     static void main() {
         System.out.println("Hello world");
-        testElementaire();
-        testPersonne();
+        //testElementaire();
+        //testPersonne();
+        testerCollectionPersonne();
     }
 
     public static void testElementaire(){
@@ -20,6 +25,34 @@ public class MyApp1 {
         System.out.println("chA="+chA);
         chA = new String("lundi");  //ou plus simplement chA = "lundi"
         System.out.println("chA="+chA);
+    }
+
+    public static void testerCollectionPersonne(){
+        Personne p1 = new Personne("jean Bon", 35 , 62.5 );
+        Personne p2 = new Personne("toto", 25 , 82.5 );
+
+        List<Personne> listePersonne = new ArrayList<>();
+        listePersonne.add(p1);
+        listePersonne.add(p2);
+        listePersonne.add ( new Personne("luc" , 40 , 77.7));
+        System.out.println("----ordre initial----");
+        for(Personne p : listePersonne){
+            System.out.println("\t" + p);
+        }
+
+        ComparateurPersonneParNom comparateurDePersonneParNom = new ComparateurPersonneParNom();
+        Collections.sort(listePersonne,comparateurDePersonneParNom);
+        System.out.println("----apres tri par nom----");
+        for(Personne p : listePersonne) {
+            System.out.println("\t" + p); //"\t" pour tabulation , "\n" pour saut de ligne
+        }
+
+        ComparateurPersonneParAge comparateurDePersonneParAge = new ComparateurPersonneParAge();
+        Collections.sort(listePersonne,comparateurDePersonneParAge);
+        System.out.println("----apres tri par age décroissant----");
+        for(Personne p : listePersonne) {
+            System.out.println("\t" + p); //"\t" pour tabulation , "\n" pour saut de ligne
+        }
     }
 
     public static void testPersonne(){
