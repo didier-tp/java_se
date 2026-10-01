@@ -7,6 +7,7 @@ import tp.figure.*;
 import tp.svg.MySvgUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -83,26 +84,36 @@ public class MyApp {
         List<Figure2D> listeInitialeFigures = buildListeFigures();
 
 
+        Map<String, List<Figure2D>> mapTypeFigFigures = Segmentation.segmenter(listeInitialeFigures);
+        System.out.println("mapTypeFigFigures=" + mapTypeFigFigures);
 
-        Map<String,List<Figure2D>> mapTypeFigFigures= Segmentation.segmenter(listeInitialeFigures);
-        System.out.println("mapTypeFigFigures="+mapTypeFigFigures);
-
-        Map<String,List<Figure2D>> mapTypeFigFiguresV2=
+        Map<String, List<Figure2D>> mapTypeFigFiguresV2 =
                 listeInitialeFigures.stream()
-                        .collect(Collectors.groupingBy((fig)->fig.getClass().getSimpleName()));
-        System.out.println("mapTypeFigFiguresV2="+mapTypeFigFiguresV2);
+                        .collect(Collectors.groupingBy((fig) -> fig.getClass().getSimpleName()));
+        System.out.println("mapTypeFigFiguresV2=" + mapTypeFigFiguresV2);
 
-        List<Map.Entry<String,List<Figure2D>>> entriesOfmapTypeFigFiguresTransformees =
+        List<Map.Entry<String, List<Figure2D>>> entriesOfmapTypeFigFiguresTransformees =
                 mapTypeFigFigures.entrySet().stream()
-                        .map( (e) -> { e.getValue().forEach((fig)-> { fig.zoomer(coeffZoom); }); return e;})
-                        .map( (e) -> { e.getValue().forEach((fig)-> { fig.translater(dx,dy); }); return e;})
-                        .collect(Collectors.toList());
-        System.out.println("entriesOfmapTypeFigFiguresTransformees="+entriesOfmapTypeFigFiguresTransformees);
-        Map<String,List<Figure2D>> mapTypeFigFiguresTransformees = null;
+                        .map((e) -> {
+                            e.getValue().forEach((fig) -> {
+                                fig.zoomer(coeffZoom);
+                            });
+                            return e;
+                        })
+                        .map((e) -> {
+                            e.getValue().forEach((fig) -> {
+                                fig.translater(dx, dy);
+                            });
+                            return e;
+                        })
+                        .toList();
+        System.out.println("entriesOfmapTypeFigFiguresTransformees=" + entriesOfmapTypeFigFiguresTransformees);
+        Map.Entry<String, List<Figure2D>>[] array = new Map.Entry[entriesOfmapTypeFigFiguresTransformees.size()]; //toFill
+        entriesOfmapTypeFigFiguresTransformees.toArray(array); //filled array
+        Map<String, List<Figure2D>> mapTypeFigFiguresTransformees = Map.ofEntries(array);
+        System.out.println("mapTypeFigFiguresTransformees=" + mapTypeFigFiguresTransformees);
         //String globalContent = MySvgUtil.generateGlobalSvgContent(listeTransformeeFigures);
         //System.out.println(globalContent);
-
-
     }
 
     static void premiersTests(){
