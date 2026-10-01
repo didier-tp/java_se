@@ -41,7 +41,7 @@ public class Ligne extends Figure2D{
                 ", y1=" + y1 +
                 ", x2=" + x2 +
                 ", y2=" + y2 +
-                "} hériatnt de " + super.toString();
+                "} héritant de " + super.toString();
     }
 
     public int getX1() {

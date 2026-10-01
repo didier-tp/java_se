@@ -8,6 +8,7 @@ import tp.svg.MySvgUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class MyApp {
@@ -47,6 +48,7 @@ public class MyApp {
         }
         log.info("coeffZoom={} dx={} dy={} typeFig={}\n" , coeffZoom , dx , dy , typeFig);
         enchainerTransformationsEtGenerationFichierSvg(coeffZoom,dx,dy,typeFig);
+        enchainerTransformationsEtGenerationFichierSvgAvecSegmentation(coeffZoom,dx,dy);
     }
 
     public static List<Figure2D> buildListeFigures() {
@@ -54,6 +56,9 @@ public class MyApp {
         listeFigures.add(new Rectangle(100,180,200,50,"black",5,"blue"));
         listeFigures.add(new Ligne(150,100,250,100,"green",4 , null));
         listeFigures.add(new Cercle(100,100,30,"black",3,"red"));
+        listeFigures.add(new Rectangle(10,18,200,50,"red",5,"green"));
+        listeFigures.add(new Ligne(150,120,250,120,"blue",4 , null));
+        listeFigures.add(new Cercle(50,50,30,"orange",3,"yellow"));
         return listeFigures;
     }
     public static void enchainerTransformationsEtGenerationFichierSvg(double coeffZoom ,
@@ -71,6 +76,33 @@ public class MyApp {
                 MySvgUtil.generateSvgFile(listeTransformeeFigures, "dessin2.svg");
         //String globalContent = MySvgUtil.generateGlobalSvgContent(listeTransformeeFigures);
         //System.out.println(globalContent);
+    }
+
+    public static void enchainerTransformationsEtGenerationFichierSvgAvecSegmentation(double coeffZoom ,
+                                                                      int dx, int dy ) {
+        List<Figure2D> listeInitialeFigures = buildListeFigures();
+
+
+
+        Map<String,List<Figure2D>> mapTypeFigFigures= Segmentation.segmenter(listeInitialeFigures);
+        System.out.println("mapTypeFigFigures="+mapTypeFigFigures);
+
+        Map<String,List<Figure2D>> mapTypeFigFiguresV2=
+                listeInitialeFigures.stream()
+                        .collect(Collectors.groupingBy((fig)->fig.getClass().getSimpleName()));
+        System.out.println("mapTypeFigFiguresV2="+mapTypeFigFiguresV2);
+
+        List<Map.Entry<String,List<Figure2D>>> entriesOfmapTypeFigFiguresTransformees =
+                mapTypeFigFigures.entrySet().stream()
+                        .map( (e) -> { e.getValue().forEach((fig)-> { fig.zoomer(coeffZoom); }); return e;})
+                        .map( (e) -> { e.getValue().forEach((fig)-> { fig.translater(dx,dy); }); return e;})
+                        .collect(Collectors.toList());
+        System.out.println("entriesOfmapTypeFigFiguresTransformees="+entriesOfmapTypeFigFiguresTransformees);
+        Map<String,List<Figure2D>> mapTypeFigFiguresTransformees = null;
+        //String globalContent = MySvgUtil.generateGlobalSvgContent(listeTransformeeFigures);
+        //System.out.println(globalContent);
+
+
     }
 
     static void premiersTests(){
