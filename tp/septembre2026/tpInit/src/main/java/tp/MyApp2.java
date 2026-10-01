@@ -2,6 +2,11 @@ package tp;
 
 
 import javax.swing.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,7 +21,30 @@ public class MyApp2 {
         //System.out.println("racine carre de 81="+Math.sqrt(81));
         testListe();
         testGenericMyStack();
-        testerScanner();
+        //testerScanner();
+        testerDates();
+    }
+
+    public static void testerDates(){
+        LocalDateTime maintenant = LocalDateTime.now();
+        System.out.println("maintenant=" + maintenant);
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Veuillez SVP saisir une première date au format jour/mois/année (ex: 20/03/2025) ");
+        System.out.print("date1=");
+        String date1AsString = scanner.next();
+        System.out.println("Veuillez SVP saisir une seconde date au format jour/mois/année (ex: 27/07/2025)");
+        System.out.print("date2=");
+        String date2AsString = scanner.next();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate localDate1 = LocalDate.parse(date1AsString, formatter);
+        LocalDate localDate2 = LocalDate.parse(date2AsString, formatter);
+        System.out.println("localDate1=" + localDate1 +  " localDate2="+localDate1);
+
+        Period periode = Period.between(localDate1, localDate2) ;
+        long periodeEnNombreDeJours = ChronoUnit.DAYS.between(localDate1, localDate2);
+        System.out.println("écart (période) entre les deux dates: " + periode + " soit globalement " + periodeEnNombreDeJours + " jours");
     }
 
     static void testBagage(){

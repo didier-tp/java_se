@@ -15,7 +15,7 @@ public class MyApp1 {
         //testerCollectionPersonne();
         testerStream();
         testerStreamAvecReduce();
-        //testerForEachWithLambda();
+        testerForEachWithLambda();
     }
 
     public static void testElementaire(){
