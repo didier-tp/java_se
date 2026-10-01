@@ -17,7 +17,8 @@ public class MyApp1 {
         //testPersonne();
         //testerCollectionPersonne();
         testerStream();
-        testerForEachWithLambda();
+        testerStreamAvecReduce();
+        //testerForEachWithLambda();
     }
 
     public static void testElementaire(){
@@ -91,6 +92,15 @@ public class MyApp1 {
         );
     }
 
+    public static void testerStreamAvecReduce(){
+        //calculer la somme des poids d'un groupe de personnes
+        List<Personne> listePersonne = initListePersonnes();
+        double poidsTotal = listePersonne.stream()
+                .map((p)->p.getPoids())
+                .reduce(0.0,(x,y)->x+y);
+        System.out.println("poidsTotal="+poidsTotal);
+    }
+
     public static void testerStream(){
         //avec stream, enchaîner "filtrage des personnes majeures" , "tri selon age"
         //puis transformations avec noms en majuscules
@@ -100,12 +110,11 @@ public class MyApp1 {
         AtomicLong sommeAge = new AtomicLong();
         List<Personne> listePersonnesFiltreesTrieesEtTransformees =
                 listePersonne.stream()
-                        .filter( (p)->p.getAge()>=18 )
+                        .filter( (p)-> p.getAge()>=18 )
                         .sorted( (p1,p2)->Integer.compare(p1.getAge(), p2.getAge()))
                         //.map( (p) -> { p.setNom(p.getNom().toUpperCase()); return p; } )
                         .map( (p) -> new Personne(p.getNom().toUpperCase(),p.getAge(),p.getPoids()) )
-                        .peek((p)-> {  nbPersMajeures.getAndIncrement();
-                                                sommeAge.addAndGet( p.getAge());  } )
+                        .peek((p)-> { nbPersMajeures.getAndIncrement();  sommeAge.addAndGet( p.getAge());  } )
                         .toList();
         System.out.println("nombre de personnes majeures = " + nbPersMajeures.get());
         System.out.println("age moyen  des personnes majeures = " + (double) sommeAge.get() / nbPersMajeures.get());
