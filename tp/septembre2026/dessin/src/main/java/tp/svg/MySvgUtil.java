@@ -2,6 +2,9 @@ package tp.svg;
 
 import tp.figure.Figure2D;
 
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class MySvgUtil {
@@ -24,4 +27,24 @@ public class MySvgUtil {
         buffer.append("</svg>");
         return buffer.toString();
     }
+
+
+    public static void generateSvgFile(List<Figure2D> listeFig , String fileName) {
+//ex de fileName : "dessin.svg"
+//ouvrir le fichier en écriture (flux élémentaire + PrintStream)
+//écrire dans ce fichier le résultat de la sous méthode generateGlobalSvgContent()
+//fermer les flux ouverts
+        String svgGlobalContent = generateGlobalSvgContent(listeFig);
+        try(/*FileOutputStream fos = new FileOutputStream(fileName);
+            PrintStream ps = new PrintStream(fos)*/
+                PrintStream ps = new PrintStream(fileName)
+                /*PrintWriter ps = new PrintWriter(fileName)*/
+        ){
+               ps.print(svgGlobalContent);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        //automatic .close() in automatic .finally{ } block
+    }
+
 }

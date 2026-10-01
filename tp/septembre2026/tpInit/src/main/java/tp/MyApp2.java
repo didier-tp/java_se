@@ -37,10 +37,10 @@ public class MyApp2 {
         System.out.print("date2=");
         String date2AsString = scanner.next();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");  //yyyy-MM-dd
         LocalDate localDate1 = LocalDate.parse(date1AsString, formatter);
         LocalDate localDate2 = LocalDate.parse(date2AsString, formatter);
-        System.out.println("localDate1=" + localDate1 +  " localDate2="+localDate1);
+        System.out.println("localDate1=" + localDate1 +  " localDate2="+localDate2);
 
         Period periode = Period.between(localDate1, localDate2) ;
         long periodeEnNombreDeJours = ChronoUnit.DAYS.between(localDate1, localDate2);

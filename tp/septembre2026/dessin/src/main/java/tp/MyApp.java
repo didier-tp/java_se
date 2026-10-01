@@ -68,9 +68,9 @@ public class MyApp {
                 //effecter une seconde transformation de type translation(dx,dy)
                 //filtrer selon le type de figure (typeFig , ex :"Cercle") via un test de type instanceof ...
                         .collect(Collectors.toList());
-                //futur MySvgUtil.generateSvgFile(listeTransformeeFigures, "dessin2.svg");
-        String globalContent = MySvgUtil.generateGlobalSvgContent(listeTransformeeFigures);
-        System.out.println(globalContent);
+                MySvgUtil.generateSvgFile(listeTransformeeFigures, "dessin2.svg");
+        //String globalContent = MySvgUtil.generateGlobalSvgContent(listeTransformeeFigures);
+        //System.out.println(globalContent);
     }
 
     static void premiersTests(){
