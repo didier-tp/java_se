@@ -9,20 +9,24 @@ public class MyApp3 {
     }
 
     public static void test_select(){
-        try {
-            Connection cn = etablir_connexion_db();
-            Statement statement=cn.createStatement();
-            String chRequeteSql="SELECT * FROM personne";
-            ResultSet rs = statement.executeQuery(chRequeteSql);
-            while(rs.next()){
-               String nom = rs.getString("nom");
-               Integer age = (Integer) rs.getObject("age");
-                System.out.printf("nom=%s age=%d\n",nom,age);
+        try( Connection cn = etablir_connexion_db() ) {
+           try (Statement statement=cn.createStatement()){
+                String chRequeteSql = "SELECT * FROM personne";
+                try(ResultSet rs = statement.executeQuery(chRequeteSql)) {
+                    while (rs.next()) {
+                        String nom = rs.getString("nom");
+                        Integer age = (Integer) rs.getObject("age");
+                        System.out.printf("nom=%s age=%d\n", nom, age);
+                    }
+                }
             }
         } catch (SQLException e) {
             //throw new RuntimeException(e);
+            System.out.println("***** " + e.getMessage());
             e.printStackTrace();
         }
+        System.out.println("suite sans appli complement plantée");
+        //automatic cn.close in automatic finally blocs
     }
 
     static Connection etablir_connexion_db(){
