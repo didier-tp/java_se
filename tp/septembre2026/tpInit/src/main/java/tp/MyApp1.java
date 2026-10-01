@@ -2,10 +2,7 @@ package tp;
 
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -99,6 +96,19 @@ public class MyApp1 {
                 .map((p)->p.getPoids())
                 .reduce(0.0,(x,y)->x+y);
         System.out.println("poidsTotal="+poidsTotal);
+
+        int ageMini=5;
+        //int ageMini=10;
+        Optional<Personne> optPers = listePersonne.stream()
+                .filter( (p) -> p.getAge() <= ageMini)
+                .findFirst();
+        //System.out.println("*** personne jeune: " + optPers.get());  //souleve exception si empty , si pas trouvé
+        System.out.println("*** personne jeune: " + optPers.orElse(null));
+        /*
+        optPers.ifPresentOrElse(
+                (p)-> System.out.println(p.toString()),
+                ()-> System.out.println("pas trouvé") );
+         */
     }
 
     public static void testerStream(){

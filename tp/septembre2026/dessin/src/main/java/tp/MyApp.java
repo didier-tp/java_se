@@ -32,6 +32,7 @@ public class MyApp {
             try {
             switch(nomArg){
                 case "dx": dx=Integer.parseInt(valArg);    break;
+                case "typeFig": typeFig=valArg;    break;
                 case "dy":
                         dy=Integer.parseInt(valArg);
                     break;
@@ -60,6 +61,9 @@ public class MyApp {
         List<Figure2D> listeInitialeFigures = buildListeFigures();
         List<Figure2D> listeTransformeeFigures =
                 listeInitialeFigures.stream()
+                        .filter( (fig) -> typeFig!=null?fig.getClass().getSimpleName().equals(typeFig):true )
+                        .map( (fig) -> { fig.zoomer(coeffZoom); return fig;})
+                        .map( (fig) -> { fig.translater(dx,dy); return fig;})
                 //effecter une premiere transformation de type zoomer(coeffZoom)
                 //effecter une seconde transformation de type translation(dx,dy)
                 //filtrer selon le type de figure (typeFig , ex :"Cercle") via un test de type instanceof ...
