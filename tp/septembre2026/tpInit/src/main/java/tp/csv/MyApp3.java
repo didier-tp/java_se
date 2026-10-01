@@ -15,13 +15,14 @@ public class MyApp3 {
         //avec try/catch (Exception ex){ ... }
 
         try {
-            ResourceBundle ressources = ResourceBundle.getBundle("paramDB") ; // paramDB.properties
+            ResourceBundle ressources = ResourceBundle.getBundle("db") ; // db.properties
             String driver = ressources.getString("driver");
             String chUrl = ressources.getString("url");
             String username = ressources.getString("username");
             String password = ressources.getString("password");
             Class.forName(driver);
             Connection cn = DriverManager.getConnection(chUrl,username,password) ;
+            System.out.println("cn="+cn.toString());
         } catch (ClassNotFoundException e) {
             //throw new RuntimeException(e);
             System.err.println("erreur de driver jdbc :" + e.getMessage());
