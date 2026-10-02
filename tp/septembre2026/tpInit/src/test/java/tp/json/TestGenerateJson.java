@@ -1,7 +1,6 @@
-package tp.dao.json;
+package tp.json;
 
 import org.junit.jupiter.api.Test;
-import tp.json.Dto;
 
 public class TestGenerateJson {
 
