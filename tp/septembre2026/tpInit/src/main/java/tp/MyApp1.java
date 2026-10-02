@@ -5,6 +5,7 @@ import lombok.ToString;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 
 public class MyApp1 {
@@ -130,6 +131,20 @@ public class MyApp1 {
         System.out.println("age moyen  des personnes majeures = " + (double) sommeAge.get() / nbPersMajeures.get());
         System.out.println("listePersonnesFiltreesTrieesEtTransformees = " + listePersonnesFiltreesTrieesEtTransformees);
         System.out.println("listePersonne modifiée ou pas par effet de bord = " + listePersonne);
+
+        //poids moyen des personnes:
+        Double moyennePoids = listePersonne.stream()
+                .map(p -> p.getPoids())
+                .mapToDouble(val -> val).average().orElse(0.0);
+        //NB: .mapToDouble() preparer l'opération terminale .average()
+        //de type appel de fonction sur un paquet de Double
+        System.out.println("moyenne des poids de toutes les personnes :"+moyennePoids);
+
+        Double moyennePoidsV2 = listePersonne.stream()
+                .collect(Collectors.averagingDouble((Personne p)-> p.getPoids()));
+
+        System.out.println("moyenne des poids de toutes les personnes (v3):"+moyennePoidsV2);
+
     }
 
     public static void testerForEachWithLambda(){

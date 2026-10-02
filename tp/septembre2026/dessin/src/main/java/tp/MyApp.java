@@ -83,17 +83,17 @@ public class MyApp {
                                                                       int dx, int dy ) {
         List<Figure2D> listeInitialeFigures = buildListeFigures();
 
-
+       /*
         Map<String, List<Figure2D>> mapTypeFigFigures = Segmentation.segmenter(listeInitialeFigures);
         System.out.println("mapTypeFigFigures=" + mapTypeFigFigures);
-
+       */
         Map<String, List<Figure2D>> mapTypeFigFiguresV2 =
                 listeInitialeFigures.stream()
                         .collect(Collectors.groupingBy((fig) -> fig.getClass().getSimpleName()));
         System.out.println("mapTypeFigFiguresV2=" + mapTypeFigFiguresV2);
 
         List<Map.Entry<String, List<Figure2D>>> entriesOfmapTypeFigFiguresTransformees =
-                mapTypeFigFigures.entrySet().stream()
+                mapTypeFigFiguresV2.entrySet().stream()
                         .map((e) -> {
                             e.getValue().forEach((fig) -> {
                                 fig.zoomer(coeffZoom);
