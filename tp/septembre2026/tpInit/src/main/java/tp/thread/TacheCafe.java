@@ -25,12 +25,15 @@ public class TacheCafe implements Runnable {
         /*
         //version pas fiable ou buggée sans synchronized
             TacheCafe.compteur++;
+            MyThreadUtil.afficherMessage("compteur=" + compteur  );
             numero = TacheCafe.compteur;
          */
+
 
         //version avec compteur static
         synchronized(TacheCafe.class) {
             TacheCafe.compteur++;
+            MyThreadUtil.afficherMessage("compteur=" + compteur  );
             numero = TacheCafe.compteur;
         }
 
@@ -39,6 +42,7 @@ public class TacheCafe implements Runnable {
         //version avec compteur pas static (différent pour taches "café long" et "café court")
         synchronized(this) {
             this.compteur++;
+            MyThreadUtil.afficherMessage("compteur=" + compteur  );
             numero = this.compteur;
         }
         */
