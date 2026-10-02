@@ -21,6 +21,6 @@ public class TestDaoPersonne {
     public void testInsertEtFind(){
         PersonEntity person = daoPersonne.findById(1);
         Assertions.assertNotNull(person);
-        System.out.println("person avec id=1 :" + person );
+        System.out.println("person avec id=1 :" + person.toString() );
     }
 }
