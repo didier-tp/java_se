@@ -30,13 +30,26 @@ public class TestGenerateJson {
     @Test
     public void testSwitchAsExpression(){
         for(Dto.Produit prod : buildProdList()){
-            double coeffAugmentation = switch(prod.categorie()){
+            //final var sur variable local  = equivalent du mot clef const en javascript
+            final var coeffAugmentation = switch(prod.categorie()){
                 case "nourriture" -> 1.1;
                 case "papeterie" -> 1.05;
                 default -> 1.0;
             };
             Dto.Produit prodApresAugmentation = new Dto.Produit(prod.numero(),prod.label(),prod.categorie(),prod.prix()*coeffAugmentation,prod.poids());
             System.out.println("prodApresAugmentation="+prodApresAugmentation.toString()  + " coeffAugmentation=" + coeffAugmentation);
+        }
+    }
+
+    @Test void testPatternMatching(){
+        var listeDeChosesDiverses = Arrays.asList("azerty" , 5 , 6 , "suite");
+        for(Object obj : listeDeChosesDiverses){
+           if(obj instanceof String str){
+               System.out.println(str + " est une chaine de longeur " + str.length());
+           }
+           else if(obj instanceof Integer i){
+                System.out.println(i + " est un entier");
+            }
         }
     }
 
