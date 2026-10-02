@@ -1,0 +1,29 @@
+package tp.thread;
+
+public class TacheCafeV1 implements Runnable {
+
+    private boolean estLong=false; //par defaut
+
+    public TacheCafeV1(boolean estLong) {
+        this.estLong = estLong;
+    }
+
+    public TacheCafeV1() {
+        // café court par defaut avec estLong à false
+    }
+
+    public String typeCafe(){
+        return this.estLong?"long":"court";
+    }
+
+    @Override
+    public void run(){
+        //..
+        MyThreadUtil.afficherMessage("début de préparation du café " + this.typeCafe()  );
+        if(this.estLong)
+            MyThreadUtil.pause(4000);
+        else
+            MyThreadUtil.pause(2000);
+        MyThreadUtil.afficherMessage("fin de préparation du café " + this.typeCafe()  );
+    }
+}
