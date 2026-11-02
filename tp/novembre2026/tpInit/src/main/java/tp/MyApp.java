@@ -13,7 +13,14 @@ public class MyApp {
         p1 = new Personne();
         p1.afficher();
         p1.setNom("Alice");   p1.setAge(30);   p1.setPoids(65.5);
-        p1.afficher();
+        //p1.afficher();
+        System.out.println("p1 = " + p1.toString());
+        Personne p2=null;
+        p2 = new Personne("Bob", 25, 70.0);
+        //p2.afficher();
+        System.out.println("p2 = " + p2);//appel implicite de .toString()
+        p2.setAge(p2.getAge() +1);
+        System.out.println("nouvel age de p2 = " + p2.getAge());
     }
 
     public static void testConversion(){

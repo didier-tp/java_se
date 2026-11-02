@@ -15,6 +15,15 @@ public class Personne {
     public Personne() {
     }
 
+    @Override
+    public String toString() {
+        return "Personne{" +
+                "nom='" + nom + '\'' +
+                ", age=" + age +
+                ", poids=" + poids +
+                '}';
+    }
+
     public String getNom() {
         return nom;
     }
