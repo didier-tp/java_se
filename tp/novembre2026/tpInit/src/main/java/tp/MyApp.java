@@ -5,6 +5,13 @@ public class MyApp {
         System.out.println("Hello, World!");
         //testConversion();
         testPersonne();
+        String s1 ="abc";
+        String s0 ="ab";
+        String s2 =s0 + "c";
+        //if(s1==s2) { //pas ok
+        if(s1.equals(s2)) { //ok avec .equals() dejà codé dans la classe String
+            System.out.println("s1 et s2 ont meme valeurs internes");
+        }
     }
 
     public static void testPersonne(){
