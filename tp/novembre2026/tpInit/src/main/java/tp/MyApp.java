@@ -3,7 +3,12 @@ package tp;
 public class MyApp {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
-        testConversion();
+        //testConversion();
+        testPersonne();
+    }
+
+    public static void testPersonne(){
+        //new Personne + appel de afficher sur un objet de type Personne
     }
 
     public static void testConversion(){
