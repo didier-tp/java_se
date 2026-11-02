@@ -9,6 +9,10 @@ public class MyApp {
 
     public static void testPersonne(){
         //new Personne + appel de afficher sur un objet de type Personne
+        Personne p1 =null;
+        p1 = new Personne();
+        p1.nom = "Alice";   p1.age = 30;   p1.poids = 65.5;
+        p1.afficher();
     }
 
     public static void testConversion(){
