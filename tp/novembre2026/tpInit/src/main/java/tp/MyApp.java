@@ -28,6 +28,13 @@ public class MyApp {
         System.out.println("p2 = " + p2);//appel implicite de .toString()
         p2.setAge(p2.getAge() +1);
         System.out.println("nouvel age de p2 = " + p2.getAge());
+
+        Personne p2Bis = new Personne("Bob", 26, 70.0);
+        if(p2.equals(p2Bis)){
+            System.out.println("p2 et p2Bis sont égaux");
+        } else {
+            System.out.println("p2 et p2Bis sont différents");
+        }
     }
 
     public static void testConversion(){

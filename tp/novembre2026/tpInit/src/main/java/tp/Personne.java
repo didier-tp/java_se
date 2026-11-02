@@ -1,5 +1,7 @@
 package tp;
 
+import java.util.Objects;
+
 public class Personne {
     //V1 (tout en public)
     private String nom ;
@@ -22,6 +24,11 @@ public class Personne {
                 ", age=" + age +
                 ", poids=" + poids +
                 '}';
+    }
+
+    public void afficher(){
+        // System.out.println("Personne nom: " + this.nom + ", age: " + this.age + ", poids: " + this.poids);
+        System.out.println(this.toString());
     }
 
     public String getNom() {
@@ -48,7 +55,18 @@ public class Personne {
         this.poids = poids;
     }
 
-    public void afficher(){
-        System.out.println("Personne nom: " + this.nom + ", age: " + this.age + ", poids: " + this.poids);
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Personne personne = (Personne) o;
+        return age == personne.age && Objects.equals(nom, personne.nom) && Objects.equals(poids, personne.poids);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nom, age, poids);
+    }
+
+
 }
