@@ -17,6 +17,7 @@ public class Personne {
     public Personne() {
     }
 
+
     @Override
     public String toString() {
         return "Personne{" +
@@ -55,7 +56,6 @@ public class Personne {
         this.poids = poids;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -67,6 +67,4 @@ public class Personne {
     public int hashCode() {
         return Objects.hash(nom, age, poids);
     }
-
-
 }

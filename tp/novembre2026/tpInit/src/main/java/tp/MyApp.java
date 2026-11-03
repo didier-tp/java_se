@@ -2,9 +2,15 @@ package tp;
 
 public class MyApp {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        System.out.println("Hello, welcome to MyApp!");
         //testConversion();
-        testPersonne();
+        //testPersonne();
+        //testBagage();
+        testMoyenne();
+        testString();
+    }
+
+    public static void testString(){
         String s1 ="abc";
         String s0 ="ab";
         String s2 =s0 + "c";
@@ -12,6 +18,53 @@ public class MyApp {
         if(s1.equals(s2)) { //ok avec .equals() dejà codé dans la classe String
             System.out.println("s1 et s2 ont meme valeurs internes");
         }
+
+        String sDate = "2023-01-17";
+        //extraire la partie mois de différentes
+        String mois = sDate.substring(sDate.indexOf('-')+1,sDate.lastIndexOf('-'));
+        System.out.println("mois = " + mois);
+        String moisV2 = sDate.split("-")[1];
+        System.out.println("moisV2 = " + moisV2);
+
+        String chaine="YTREZA" ;
+        //créer une nouvelle chaine inverse où tous les caractères sont dans l'ordre inverse
+        StringBuilder buffer = new StringBuilder(chaine.length());
+        for(int i=chaine.length()-1; i>=0; i--){
+            buffer.append(chaine.charAt(i));
+        }
+        String chaineInverse = buffer.toString();
+        System.out.println("chaineInverse = " + chaineInverse);
+       
+    }
+
+    public static void testMoyenne(){
+        /*
+        double[] tab = new double[6];
+        tab[0] = 12.0; tab[1] = 14.0; tab[2] = 18.0;
+        tab[3] = 20.0; tab[4] = 10.0; tab[5] = 8.0;
+         */
+        double[] tab = {12.0, 14.0, 18.0, 20.0 , 10.0 , 8.0};
+        double somme = 0.0;
+        for(int i=0; i<tab.length; i++) {
+            somme += tab[i];
+        }
+        double moyenne = somme / tab.length;
+        System.out.println("La moyenne est: " + moyenne);
+        double plusGrand = tab[0];
+        for(int i=1; i<tab.length; i++) {
+           if(tab[i] > plusGrand) {
+               plusGrand = tab[i];
+           }
+        }
+        System.out.println("plusGrand: " + plusGrand);
+    }
+
+    public static void testBagage(){
+        Bagage b1 = new Bagage();
+        b1.setLabel("Valise");
+        b1.setPoids(67);
+        b1.setVolume(50.0);
+        System.out.println("b1 = " + b1.toString());
     }
 
     public static void testPersonne(){
