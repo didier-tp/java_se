@@ -1,5 +1,8 @@
 package tp;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public class ServiceXy {
 
     static void main() {
@@ -8,11 +11,12 @@ public class ServiceXy {
         serviceXy.useXyData();
     }
 
-    private DaoXy daoXy;
+    private final DaoXy daoXy;
 
+    /*
     public ServiceXy(DaoXy daoXy) {
         this.daoXy = daoXy;
-    }
+    }*/
 
     public void useXyData() {
         String data = daoXy.getData();
