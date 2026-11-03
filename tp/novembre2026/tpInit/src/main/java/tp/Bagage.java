@@ -13,6 +13,7 @@ public class Bagage {
     private Integer poids; //en g
     private Double volume; //en litres
 
+
     public void setPoids(Integer poids) {
         if(poids>=0){
             this.poids = poids;

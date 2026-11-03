@@ -1,12 +1,34 @@
 package tp;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyApp2 {
     static void main() {
         System.out.println("Hello, welcome to MyApp2!");
         //testConversion();
         //testBagage();
-        testMoyenne();
-        testString();
+        //testMoyenne();
+        //testString();
+        testListeString();
+    }
+
+    public static void testListeString(){
+        List<String> liste = new ArrayList<>();
+        liste.add("janvier"); liste.add("fevrier"); liste.add("mars");
+        System.out.println("liste = " + liste);
+        for(int i=0; i<liste.size(); i++) {
+            System.out.println("liste.get(" + i + ") = " + liste.get(i));
+        }
+        for(int i=0; i<liste.size(); i++) {
+           String mois =  liste.get(i);
+           liste.set(i,mois.toUpperCase());
+        }
+        for(String mois : liste) {
+            System.out.println("mois = " + mois);
+        }
+        System.out.println("taille liste = " + liste.size());
     }
 
     public static void testString(){
@@ -47,7 +69,8 @@ public class MyApp2 {
         for(int i=0; i<tab.length; i++) {
             somme += tab[i];
         }
-        double moyenne = somme / tab.length;
+        final double moyenne = somme / tab.length; //final ressemble à const du langage javascript
+        //moyenne = 9; //modification impossible car moyenne est final
         System.out.println("La moyenne est: " + moyenne);
         double plusGrand = tab[0];
         for(int i=1; i<tab.length; i++) {

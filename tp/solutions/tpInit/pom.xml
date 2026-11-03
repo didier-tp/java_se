@@ -19,7 +19,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>  <!-- ou bien version plus récente -->
+            <version>1.18.48</version>  <!-- ou bien version plus récente -->
         </dependency>
 
         <dependency>
