@@ -4,9 +4,23 @@ import java.util.Objects;
 
 public class Personne {
     //V1 (tout en public)
+    public static final int AGE_MAJORITE=18;
+    private static double esperanceVie = 80.0;//en années
     private String nom ;
     private int age ;
     private Double poids;
+
+    public boolean estMajeur() {
+        return (this.age >= AGE_MAJORITE);
+    }
+
+    public static double getEsperanceVie() {
+        return esperanceVie;
+    }
+
+    public static void setEsperanceVie(double esperanceVie) {
+        Personne.esperanceVie = esperanceVie;
+    }
 
     public Personne(String nom, int age, Double poids) {
         this.nom = nom;

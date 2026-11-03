@@ -31,6 +31,12 @@ public class MyApp1 {
         } else {
             System.out.println("p2 et p2Bis sont différents");
         }
+
+        System.out.println("esperance de vie initiale (avant covid) = " + Personne.getEsperanceVie());
+        Personne.setEsperanceVie(79);
+        System.out.println("nouvelle esperance de vie (après covid) = " + Personne.getEsperanceVie());
+        if(p1.estMajeur())
+            System.out.println("p1 est majeur");
     }
 
 
