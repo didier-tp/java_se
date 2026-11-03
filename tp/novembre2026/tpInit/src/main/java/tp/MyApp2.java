@@ -1,8 +1,11 @@
 package tp;
 
 
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class MyApp2 {
     static void main() {
@@ -11,7 +14,29 @@ public class MyApp2 {
         //testBagage();
         //testMoyenne();
         //testString();
-        testListeString();
+        //testListeString();
+        //testMoyenneListeDouble();
+        //testGenericMyStack();
+        testerScanner();
+        //testerJOptionPane();
+    }
+
+    public static void testerScanner(){
+        Scanner reader = new Scanner(System.in);
+        System.out.print("Veuillez saisir un nombre réel x=");
+        double x = reader.nextDouble();
+        System.out.print("Veuillez saisir un nombre réel y=");
+        double y = reader.nextDouble();
+        double sum = x + y;
+        System.out.println("La somme de " + x + " et " + y + " est: " + sum);
+    }
+
+    public static void testerJOptionPane(){
+
+        double x = Double.parseDouble(JOptionPane.showInputDialog(null,"x=" , "valeur de x ?" , JOptionPane.INFORMATION_MESSAGE));
+        double y = Double.parseDouble(JOptionPane.showInputDialog(null,"y=" , "valeur de y ?" , JOptionPane.INFORMATION_MESSAGE));
+        double sum = x + y;
+        JOptionPane.showMessageDialog(null,"La somme de " + x + " et " + y + " est: " + sum);
     }
 
     public static void testListeString(){
@@ -28,7 +53,35 @@ public class MyApp2 {
         for(String mois : liste) {
             System.out.println("mois = " + mois);
         }
-        System.out.println("taille liste = " + liste.size());
+        System.out.println("taille initiale liste = " + liste.size());
+        liste.add("avril"); liste.add("mai");
+        System.out.println("liste après ajout de 2 éléments = " + liste);
+        liste.remove("JANVIER");
+        System.out.println("liste après suppression de janvier = " + liste);
+    }
+
+    public static void testMoyenneListeDouble(){
+        List<Double> liste  = Arrays.asList(12.0, 14.0, 18.0, 20.0 , 10.0 , 8.0);
+        double somme = 0.0;
+        for(Double d : liste) {
+            somme += d;
+        }
+        final double moyenne = somme / liste.size();
+        System.out.println("La moyenne (de liste de Double) est: " + moyenne);
+    }
+
+    public static void testGenericMyStack() {
+        MyStack<Integer> pileEntiers = new MyStack<Integer>();
+        pileEntiers.push(2);
+        pileEntiers.push(1);
+        System.out.println(pileEntiers.pop());//1
+        System.out.println(pileEntiers.pop());//2
+
+        MyStack<String> pileChaines = new MyStack<String>();
+        pileChaines.push("abc");
+        pileChaines.push("def");
+        System.out.println(pileChaines.pop());//"def"
+        System.out.println(pileChaines.pop());//"abc"
     }
 
     public static void testString(){

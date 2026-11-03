@@ -3,12 +3,15 @@ package tp;
 import java.util.Objects;
 
 public class Personne {
+    public enum Genre {HOMME, FEMME , INDETERMINE};
     //V1 (tout en public)
     public static final int AGE_MAJORITE=18;
     private static double esperanceVie = 80.0;//en années
+
     private String nom ;
     private int age ;
     private Double poids;
+    private Genre genre = Genre.INDETERMINE; //+get/set
 
     public boolean estMajeur() {
         return (this.age >= AGE_MAJORITE);
@@ -28,6 +31,11 @@ public class Personne {
         this.poids = poids;
     }
 
+    public Personne(String nom, int age, Double poids,Genre genre) {
+        this(nom,age,poids);
+        this.genre = genre;
+    }
+
     public Personne() {
     }
 
@@ -38,6 +46,7 @@ public class Personne {
                 "nom='" + nom + '\'' +
                 ", age=" + age +
                 ", poids=" + poids +
+                " , genre=" + genre +
                 '}';
     }
 
@@ -68,6 +77,14 @@ public class Personne {
 
     public void setPoids(Double poids) {
         this.poids = poids;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     @Override

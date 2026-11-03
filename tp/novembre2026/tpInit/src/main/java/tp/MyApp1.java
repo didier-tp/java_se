@@ -37,6 +37,12 @@ public class MyApp1 {
         System.out.println("nouvelle esperance de vie (après covid) = " + Personne.getEsperanceVie());
         if(p1.estMajeur())
             System.out.println("p1 est majeur");
+
+        Personne p3 = new Personne("Bob", 26, 70.0 , Personne.Genre.HOMME);
+        System.out.println("p3 = " + p3);
+        p3.setNom("Alice");
+        p3.setGenre(Personne.Genre.FEMME);
+        System.out.println("p3 après modification = " + p3);
     }
 
 
