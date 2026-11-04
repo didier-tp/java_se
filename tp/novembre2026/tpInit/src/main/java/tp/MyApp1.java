@@ -2,6 +2,7 @@ package tp;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -13,17 +14,7 @@ public class MyApp1 {
         testerCollectionPersonne();
     }
 
-    private static void testerCollectionPersonne() {
-        List<Personne> listePersonnes = new ArrayList<>();
-        listePersonnes.add(new Personne("zorro",35,67.0)) ;
-        listePersonnes.add(new Personne("durand",26, 70.0));
-        listePersonnes.add(new Personne("toto",45,55.0)) ;
-        listePersonnes.add(new Personne("alfred",25,68.0)) ;
-        Collections.sort(listePersonnes,new ComparateurDePersonneParNomCroissant());
-        System.out.println("listePersonnes triée par nom croissant = " + listePersonnes);
-        Collections.sort(listePersonnes,new ComparateurDePersonneParAgeDecroissant());
-        System.out.println("listePersonnes triée par age décroissant = " + listePersonnes);
-    }
+
 
 
     public static void testPersonne(){
@@ -78,6 +69,29 @@ public class MyApp1 {
 
     }
 
+    private static void testerCollectionPersonne() {
+        List<Personne> listePersonnes = new ArrayList<>();
+        listePersonnes.add(new Personne("zorro",35,67.0)) ;
+        listePersonnes.add(new Personne("Durand",26, 70.0));
+        listePersonnes.add(new Personne("toto",45,55.0)) ;
+        listePersonnes.add(new Personne("alfred",25,68.0)) ;
+        //Collections.sort(listePersonnes,new ComparateurDePersonneParNomCroissant());
+        /*
+        //avec classe anomyme imbriquée
+        Collections.sort(listePersonnes,new Comparator<Personne>(){
+            @Override
+            public int compare(Personne o1, Personne o2) {
+                return o1.getNom().compareTo(o2.getNom());
+            }
+        });
+        */
+        Collections.sort(listePersonnes,(p1,p2) ->
+                (p1.getNom()!=null)?p1.getNom().toLowerCase().compareTo(p2.getNom().toLowerCase()):-1);
+        System.out.println("listePersonnes triée par nom croissant = " + listePersonnes);
+        //Collections.sort(listePersonnes,new ComparateurDePersonneParAgeDecroissant());
+        Collections.sort(listePersonnes,(p1,p2) -> p2.getAge() - p1.getAge());
+        System.out.println("listePersonnes triée par age décroissant = " + listePersonnes);
+    }
 
 }
 
@@ -85,7 +99,7 @@ class ComparateurDePersonneParNomCroissant implements java.util.Comparator<Perso
     @Override
     public int compare(Personne o1, Personne o2) {
         if(o1.getNom() != null)
-            return o1.getNom().compareTo(o2.getNom());
+            return o1.getNom().toLowerCase().compareTo(o2.getNom().toLowerCase());
         else return -1;
     }
 }

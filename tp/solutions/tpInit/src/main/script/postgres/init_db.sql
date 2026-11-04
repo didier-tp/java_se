@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS person_db;
-USE person_db;
+CREATE DATABASE person_db;
+\c person_db;
 DROP TABLE IF EXISTS personne;
 CREATE TABLE personne  (id SERIAL NOT NULL,
                         nom VARCHAR(64),
@@ -10,6 +10,4 @@ CREATE TABLE personne  (id SERIAL NOT NULL,
 INSERT INTO personne(nom,age,poids) VALUES ('jean_bon',45, 67.8);
 INSERT INTO personne(nom,age,poids) VALUES ('axelle_aire',38, 82.56);
 
-show tables;
-describe personne;
 SELECT * FROM personne;
