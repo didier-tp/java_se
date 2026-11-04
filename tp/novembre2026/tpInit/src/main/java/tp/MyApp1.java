@@ -1,13 +1,29 @@
 package tp;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+
 public class MyApp1 {
     public static void main(String[] args) {
         System.out.println("Hello, welcome to MyApp1 ");
 
-        testPersonne();
-
+        //testPersonne();
+        testerCollectionPersonne();
     }
 
+    private static void testerCollectionPersonne() {
+        List<Personne> listePersonnes = new ArrayList<>();
+        listePersonnes.add(new Personne("zorro",35,67.0)) ;
+        listePersonnes.add(new Personne("durand",26, 70.0));
+        listePersonnes.add(new Personne("toto",45,55.0)) ;
+        listePersonnes.add(new Personne("alfred",25,68.0)) ;
+        Collections.sort(listePersonnes,new ComparateurDePersonneParNomCroissant());
+        System.out.println("listePersonnes triée par nom croissant = " + listePersonnes);
+        Collections.sort(listePersonnes,new ComparateurDePersonneParAgeDecroissant());
+        System.out.println("listePersonnes triée par age décroissant = " + listePersonnes);
+    }
 
 
     public static void testPersonne(){
@@ -63,4 +79,26 @@ public class MyApp1 {
     }
 
 
+}
+
+class ComparateurDePersonneParNomCroissant implements java.util.Comparator<Personne>{
+    @Override
+    public int compare(Personne o1, Personne o2) {
+        if(o1.getNom() != null)
+            return o1.getNom().compareTo(o2.getNom());
+        else return -1;
+    }
+}
+
+class ComparateurDePersonneParAgeDecroissant implements java.util.Comparator<Personne>{
+    @Override
+    public int compare(Personne o1, Personne o2) {
+        return o2.getAge() - o1.getAge(); //si age de type int
+        /*
+        //si age de type Integer (classe wrapper) , alors on peut faire la comparaison avec compareTo
+        if(o2.getAge() != null)
+            return o2.getAge().compareTo(o1.getAge());
+        else return -1;
+        */
+    }
 }
