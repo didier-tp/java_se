@@ -1,5 +1,8 @@
 package tp;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tp.figure.*;
 import tp.svg.MySvgUtil;
 
@@ -8,7 +11,55 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class MyApp {
+
+    //private static final Logger log= LoggerFactory.getLogger(MyApp.class);
+
+    //NB: avec IntelliJ , "Edit Run Configurations..." puis "Program arguments"
+    //puis saisir par exemple : --dx=10 --dy=20 --coeffZoom=2
+    public static void main(String[] args) {
+        double coeffZoom = 1;
+        int dx=0;
+        int dy=0;
+        String typeFig=null;
+        //premiersTests();
+
+        Map<String,String> mapArgs = parseArgs(args);
+        log.debug("mapArgs="+mapArgs);
+        String valDxArgsAsString = mapArgs.get("dx");
+        if(valDxArgsAsString != null) {
+            try {
+                dx = Integer.parseInt(valDxArgsAsString);
+            } catch (NumberFormatException e) {
+                log.error("Erreur: la valeur de dx n'est pas un entier valide : " + valDxArgsAsString);
+                //System.err.println("Erreur: la valeur de dx n'est pas un entier valide : " + valDxArgsAsString);
+                log.error("dx aura la valeur par défaut de 0");
+            }
+        }
+        String valDyArgsAsString = mapArgs.get("dy");
+        if(valDyArgsAsString != null) {
+            try {
+                dy = Integer.parseInt(valDyArgsAsString);
+            } catch (NumberFormatException e) {
+                log.error("Erreur: la valeur de dy n'est pas un entier valide : " + valDyArgsAsString);
+                log.error("dy aura la valeur par défaut de 0");
+            }
+        }
+        String valCoeffZoomArgsAsString = mapArgs.get("coeffZoom");
+        if(valCoeffZoomArgsAsString != null) {
+            try {
+                coeffZoom = Double.parseDouble(valCoeffZoomArgsAsString);
+            } catch (NumberFormatException e) {
+                log.error("Erreur: la valeur de coeffZoom n'est pas un nombre réel valide : " + valCoeffZoomArgsAsString);
+                log.error("coeffZoom aura la valeur par défaut de 1.0");
+            }
+        }
+        log.debug("dx=%d , dy=%d , coeffZoom=%f\n", dx, dy, coeffZoom);
+        //...
+
+        enchainerTransformationsEtGenerationFichierSvg(coeffZoom,dx,dy,typeFig);
+    }
 
     public static Map<String,String> parseArgs(String[] args) {
         Map<String,String> mapArgs = new java.util.HashMap<>();
@@ -22,49 +73,6 @@ public class MyApp {
         return mapArgs;
     }
 
-    //NB: avec IntelliJ , "Edit Run Configurations..." puis "Program arguments"
-    //puis saisir par exemple : --dx=10 --dy=20 --coeffZoom=2
-    public static void main(String[] args) {
-        double coeffZoom = 1;
-        int dx=0;
-        int dy=0;
-        String typeFig=null;
-        //premiersTests();
-
-        Map<String,String> mapArgs = parseArgs(args);
-        System.out.println("mapArgs="+mapArgs);
-        String valDxArgsAsString = mapArgs.get("dx");
-        if(valDxArgsAsString != null) {
-            try {
-                dx = Integer.parseInt(valDxArgsAsString);
-            } catch (NumberFormatException e) {
-                System.err.println("Erreur: la valeur de dx n'est pas un entier valide : " + valDxArgsAsString);
-                System.err.println("dx aura la valeur par défaut de 0");
-            }
-        }
-        String valDyArgsAsString = mapArgs.get("dy");
-        if(valDyArgsAsString != null) {
-            try {
-                dy = Integer.parseInt(valDyArgsAsString);
-            } catch (NumberFormatException e) {
-                System.err.println("Erreur: la valeur de dy n'est pas un entier valide : " + valDyArgsAsString);
-                System.err.println("dy aura la valeur par défaut de 0");
-            }
-        }
-        String valCoeffZoomArgsAsString = mapArgs.get("coeffZoom");
-        if(valCoeffZoomArgsAsString != null) {
-            try {
-                coeffZoom = Double.parseDouble(valCoeffZoomArgsAsString);
-            } catch (NumberFormatException e) {
-                System.err.println("Erreur: la valeur de coeffZoom n'est pas un nombre réel valide : " + valCoeffZoomArgsAsString);
-                System.err.println("coeffZoom aura la valeur par défaut de 1.0");
-            }
-        }
-        System.out.printf("dx=%d , dy=%d , coeffZoom=%f\n", dx, dy, coeffZoom);
-        //...
-
-        enchainerTransformationsEtGenerationFichierSvg(coeffZoom,dx,dy,typeFig);
-    }
     public static List<Figure2D> buildListeFigures() {
         List<Figure2D> listeFigures = new ArrayList<>();
         listeFigures.add(new Rectangle(100,180,200,50,"black",5,"blue"));
