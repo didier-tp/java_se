@@ -40,24 +40,24 @@ public class MyApp {
         System.out.println(globalSvgContent2);
     }
 
-    public static void changeFigures(List<Figure2D> listeFig){
+    public static void changeFigures(List<? extends Transformable> listeFig){
         double longeurTotale = calculerLongueurTotale(listeFig);
         System.out.println("longeurTotale initiale= " + longeurTotale);
-        for(Figure2D fig : listeFig) {
-            fig.translater(30, 20);
+        for(Transformable choseTransformable : listeFig) {
+            choseTransformable.translater(30, 20);
         }
         longeurTotale = calculerLongueurTotale(listeFig);
         System.out.println("longeurTotale après translation= " + longeurTotale);
-        for(Figure2D fig : listeFig) {
-            fig.zoomer(1.5);
+        for(Transformable choseTransformable : listeFig) {
+            choseTransformable.zoomer(1.5);
         }
         longeurTotale = calculerLongueurTotale(listeFig);
         System.out.println("longeurTotale après zoom de coeff2= " + longeurTotale);
     }
 
-    public static double calculerLongueurTotale(List<Figure2D> listeFig){
+    public static double calculerLongueurTotale(List<? extends Transformable> listeFig){
         double total = 0;
-        for(Figure2D fig : listeFig) {
+        for(Transformable fig : listeFig) {
             if (fig instanceof Ligne ligne) {
                 total += ligne.longueur();
             }
