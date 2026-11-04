@@ -41,6 +41,7 @@ public class Ligne extends Figure2D{
                 this.x2,
                 this.y2);
     }
+
     @Override
     public String toString() {
         return "ligne (x1=" + x1 + ",y1="+y1  + ",x2=" + x2 + ",y2=" + y2 + ") sorte de " + super.toString();

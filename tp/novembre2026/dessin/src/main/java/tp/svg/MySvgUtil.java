@@ -1,6 +1,7 @@
 package tp.svg;
 
 import tp.figure.Figure2D;
+import tp.figure.Ligne;
 
 import java.util.List;
 
@@ -17,6 +18,10 @@ public class MySvgUtil {
         //la méthode polymorphe .toSvgSubString()
         for (Figure2D figure : listeFig) {
             buffer.append(figure.toSvgStringWithColor() + "\n");
+            /*if(figure instanceof Ligne ligne){
+                //Ligne ligne = (Ligne) figure;
+                System.out.println("ligne");
+            }*/
         }
         //ajouter au buffer la dernière ligne d'un bloc svg
         //</svg>

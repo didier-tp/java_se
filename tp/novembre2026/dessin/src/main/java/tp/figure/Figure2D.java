@@ -37,7 +37,7 @@ public abstract class Figure2D {
                 this.couleurFond==null?"none":this.couleurFond);
     }
 
-    public abstract String toSvgSubString();
+    public  abstract String toSvgSubString() ;
 
     public Figure2D(String couleur, Integer epaisseur, String couleurFond) {
         this.couleur = couleur;
