@@ -43,6 +43,23 @@ public class MyApp1 {
         p3.setNom("Alice");
         p3.setGenre(Personne.Genre.FEMME);
         System.out.println("p3 après modification = " + p3);
+
+        try {
+            p3.setAge(-5);
+        } catch (Exception e) {
+            //throw new RuntimeException(e); //si on était à un niveau intermédiaire
+            //System.out.println("Erreur: " + e.getMessage());  // ... > ficRes.txt
+            System.err.println("Erreur: " + e.getMessage());  // ... 2> ficErr.txt
+            //e.printStackTrace(); //message plus stack trace
+        }
+        System.out.println("nouvel age de p3 = " + p3.getAge());
+        try {
+            p3.setAge(5);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("nouvel age de p3 = " + p3.getAge());
+
     }
 
 

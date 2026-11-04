@@ -67,8 +67,10 @@ public class Personne {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setAge(int age) throws IllegalArgumentException {
+        if(age>=0)
+           this.age = age;
+        else throw new IllegalArgumentException("L'age ne peut pas être négatif");
     }
 
     public Double getPoids() {
