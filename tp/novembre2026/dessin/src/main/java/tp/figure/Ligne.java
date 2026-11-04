@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter @Setter
 @NoArgsConstructor
-public class Ligne extends Figure2D{
+public class Ligne extends Figure2D {
 
     private int x1;
     private int y1;
@@ -45,5 +45,25 @@ public class Ligne extends Figure2D{
     @Override
     public String toString() {
         return "ligne (x1=" + x1 + ",y1="+y1  + ",x2=" + x2 + ",y2=" + y2 + ") sorte de " + super.toString();
+    }
+
+    @Override
+    public void translater(int dx, int dy) {
+        this.x1 += dx;
+        this.y1 += dy;
+        this.x2 += dx;
+        this.y2 += dy;
+    }
+
+    @Override
+    public void zoomer(double coeff) {
+        this.x1 = (int) (this.x1 * coeff);
+        this.y1 = (int) (this.y1 * coeff);
+        this.x2 = (int) (this.x2 * coeff);
+        this.y2 = (int) (this.y2 * coeff);
+    }
+
+    public double longueur() {
+        return Math.sqrt(Math.pow(this.x2 - this.x1, 2) + Math.pow(this.y2 - this.y1, 2));
     }
 }

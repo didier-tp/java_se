@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Rectangle extends Figure2D {
+public class Rectangle extends Figure2D implements Surface {
 
     private int x;
     private int y;
@@ -49,5 +49,19 @@ public class Rectangle extends Figure2D {
     @Override
     public String toString() {
         return "Rectangle (x=" + x + ",y="+y  + ",width=" + width + ",height=" + height + ") sorte de " + super.toString();
+    }
+
+    @Override
+    public void translater(int dx, int dy) {
+        this.x += dx;
+        this.y += dy;
+    }
+
+    @Override
+    public void zoomer(double coeff) {
+        this.x = (int) (this.x * coeff);
+        this.y = (int) (this.y * coeff);
+        this.width = (int) (this.width * coeff);
+        this.height = (int) (this.height * coeff);
     }
 }

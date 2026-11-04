@@ -11,7 +11,7 @@ public class MySvgUtil {
         StringBuilder buffer = new StringBuilder();
         //ajouter au buffer la première ligne d'un bloc svg
         //<svg xmlns='http://www.w3.org/2000/svg' height='400' width='500'>
-        buffer.append("<svg xmlns='http://www.w3.org/2000/svg' height='400' width='500'>\n");
+        buffer.append("<svg xmlns='http://www.w3.org/2000/svg' height='900' width='1200'>\n");
         //boucler sur chaque élément de la liste listeFig
         //et ajouter au buffer une ligne dont la valeur est construite
         //via la méthode .toSvgStringWithColor() appelant indirectement

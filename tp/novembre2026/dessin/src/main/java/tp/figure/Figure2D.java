@@ -11,7 +11,7 @@ import java.io.PrintStream;
 @NoArgsConstructor
 @Getter @Setter
 @ToString
-public abstract class Figure2D {
+public abstract class Figure2D implements Transformable{
     protected String couleur="black"; //couleur du trait ou du contour ("black" par défaut)
     protected Integer epaisseur=1; //épaisseur du trait ou du contour (1 par défaut)
     protected String couleurFond; //null par défaut ("none" en svg)

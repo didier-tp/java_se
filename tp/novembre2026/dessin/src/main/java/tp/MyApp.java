@@ -1,9 +1,6 @@
 package tp;
 
-import tp.figure.Cercle;
-import tp.figure.Figure2D;
-import tp.figure.Ligne;
-import tp.figure.Rectangle;
+import tp.figure.*;
 import tp.svg.MySvgUtil;
 
 import java.util.ArrayList;
@@ -36,5 +33,38 @@ public class MyApp {
 
         String globalSvgContent = MySvgUtil.generateGlobalSvgContent(listeFigures);
         System.out.println(globalSvgContent);
+
+        changeFigures(listeFigures);
+
+        String globalSvgContent2 = MySvgUtil.generateGlobalSvgContent(listeFigures);
+        System.out.println(globalSvgContent2);
+    }
+
+    public static void changeFigures(List<Figure2D> listeFig){
+        double longeurTotale = calculerLongueurTotale(listeFig);
+        System.out.println("longeurTotale initiale= " + longeurTotale);
+        for(Figure2D fig : listeFig) {
+            fig.translater(30, 20);
+        }
+        longeurTotale = calculerLongueurTotale(listeFig);
+        System.out.println("longeurTotale après translation= " + longeurTotale);
+        for(Figure2D fig : listeFig) {
+            fig.zoomer(1.5);
+        }
+        longeurTotale = calculerLongueurTotale(listeFig);
+        System.out.println("longeurTotale après zoom de coeff2= " + longeurTotale);
+    }
+
+    public static double calculerLongueurTotale(List<Figure2D> listeFig){
+        double total = 0;
+        for(Figure2D fig : listeFig) {
+            if (fig instanceof Ligne ligne) {
+                total += ligne.longueur();
+            }
+            else if (fig instanceof Surface surface) {
+                total += surface.perimetre();
+            }
+        }
+        return total;
     }
 }

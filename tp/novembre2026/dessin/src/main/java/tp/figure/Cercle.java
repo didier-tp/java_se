@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Cercle extends Figure2D {
+public class Cercle extends Figure2D implements Surface {
     private int cx;//x du centre du cercle
     private int cy;//y du centre du cercle
     private int r; //rayon
@@ -46,5 +46,18 @@ public class Cercle extends Figure2D {
     @Override
     public String toString() {
         return "Cercle (cx=" + cx + ",cy="+cy  + ",r=" + r + ") sorte de " + super.toString();
+    }
+
+    @Override
+    public void translater(int dx, int dy) {
+        this.cx += dx;
+        this.cy += dy;
+    }
+
+    @Override
+    public void zoomer(double coeff) {
+        this.r = (int) (this.r * coeff);
+        this.cx = (int) (this.cx * coeff);
+        this.cy = (int) (this.cy * coeff);
     }
 }
