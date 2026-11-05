@@ -95,11 +95,20 @@ public class MyApp {
         //filtrer selon le type de figure (typeFig , ex :"Cercle") via un test de type instanceof ...
                         .filter(fig -> {
                             if(typeFig == null) return true;
-                            //else return fig.getClass().getSimpleName().equals(typeFig);
+                            //
+                             /*
                             else if(typeFig.equals("Cercle")) return (fig instanceof Cercle);
                             else if(typeFig.equals("Rectangle")) return (fig instanceof Rectangle);
                             else if(typeFig.equals("Ligne")) return (fig instanceof Ligne);
                             else return false;
+                            */
+                            boolean estDuTypeSouhaite = switch(typeFig) {
+                                case "Cercle" -> (fig instanceof Cercle) ;
+                                case "Rectangle" -> (fig instanceof Rectangle) ;
+                                case "Ligne" ->(fig instanceof Ligne);
+                                default ->  false;
+                            };
+                            return estDuTypeSouhaite;
                         })
                         //.collect(Collectors.toList());
                         .toList();
