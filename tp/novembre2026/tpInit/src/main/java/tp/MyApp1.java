@@ -2,6 +2,7 @@ package tp;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 
 public class MyApp1 {
@@ -9,7 +10,8 @@ public class MyApp1 {
         System.out.println("Hello, welcome to MyApp1 ");
 
         //testPersonne();
-        testerCollectionPersonne();
+        //testerCollectionPersonne();
+        testerStreamPersonne();
     }
 
 
@@ -65,6 +67,26 @@ public class MyApp1 {
         }
         System.out.println("nouvel age de p3 = " + p3.getAge());
 
+    }
+
+    private static void testerStreamPersonne() {
+        List<Personne> listePersonnes = new ArrayList<>();
+        listePersonnes.add(new Personne("zorro", 35, 67.0));
+        listePersonnes.add(new Personne("durand", 6, 19.0));
+        listePersonnes.add(new Personne("toto", 45, 55.0));
+        listePersonnes.add(new Personne("alfred", 25, 68.0));
+        listePersonnes.add(new Personne("durand", 3, 12.0));
+
+        List<Personne> listePersonnesFiltreesTrieesEtTransformees =
+                listePersonnes.stream()
+                        .filter( (p)->p.getAge()>=18 )
+                        .sorted( (p1,p2)->Integer.compare(p1.getAge(), p2.getAge()))
+                        //.map( (p) -> { p.setNom(p.getNom().toUpperCase()); return p; } ) //avec effet de bord sur la liste initiale
+                        .map( (p) -> new Personne(p.getNom().toUpperCase(), p.getAge(), p.getPoids(), p.getGenre()) ) //sans effet de bord sur
+                        //.collect(Collectors.toList()); // ou bien directement .toList() depuis java 17
+                        .toList();
+        System.out.println("listePersonnes initiale (avec effet de bord ou pas) = " + listePersonnes);
+        System.out.println("listePersonnesFiltreesTrieesEtTransformees = " + listePersonnesFiltreesTrieesEtTransformees);
     }
 
     private static void testerCollectionPersonne() {
