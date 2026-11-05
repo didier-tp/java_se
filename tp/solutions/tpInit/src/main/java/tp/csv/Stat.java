@@ -4,6 +4,8 @@ public class Stat {
 
 	private Integer nbProduits;
 	private Double moyennePrix;
+
+    @CsvIgnore
 	private Double moyennePoids;
 	
 	public Stat(Integer nbProduits, Double moyennePrix, Double moyennePoids) {

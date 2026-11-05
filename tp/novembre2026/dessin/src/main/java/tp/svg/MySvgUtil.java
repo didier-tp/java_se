@@ -3,6 +3,8 @@ package tp.svg;
 import tp.figure.Figure2D;
 import tp.figure.Ligne;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class MySvgUtil {
@@ -28,5 +30,23 @@ public class MySvgUtil {
         buffer.append("</svg>\n");
         //retourner la transformation du buffer en String
         return buffer.toString();
+    }
+
+    public static void generateSvgFile(List<Figure2D> listeTransformeeFigures, String filename) {
+        String globalSvgContent = generateGlobalSvgContent(listeTransformeeFigures);
+        /*
+        try (java.io.FileWriter writer = new java.io.FileWriter(filename)) {
+            writer.write(globalSvgContent);
+            System.out.println("Fichier SVG généré avec succès : " + filename);
+        } catch (java.io.IOException e) {
+            System.err.println("Erreur lors de la génération du fichier SVG : " + e.getMessage());
+        }*/
+        try (PrintWriter writer = new PrintWriter(new File(filename))) {
+            writer.println(globalSvgContent);
+            System.out.println("Fichier SVG généré avec succès : " + filename);
+        } catch (java.io.IOException e) {
+            System.err.println("Erreur lors de la génération du fichier SVG : " + e.getMessage());
+        }
+        //implicit finally block with try-with-resources and auto-closable
     }
 }

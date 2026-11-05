@@ -86,6 +86,7 @@ public class MyApp {
     public static void enchainerTransformationsEtGenerationFichierSvg(double coeffZoom ,
                                                                       int dx, int dy , String typeFig) {
         List<Figure2D> listeInitialeFigures = buildListeFigures();
+        MySvgUtil.generateSvgFile(listeInitialeFigures, "dessin1.svg");
         List<Figure2D> listeTransformeeFigures =
                 listeInitialeFigures.stream()
         //effecter une premiere transformation de type zoomer(coeffZoom)
@@ -112,9 +113,12 @@ public class MyApp {
                         })
                         //.collect(Collectors.toList());
                         .toList();
-        //futur MySvgUtil.generateSvgFile(listeTransformeeFigures, "dessin2.svg");
+        MySvgUtil.generateSvgFile(listeTransformeeFigures, "dessin2.svg");
+        /*
         String globalSvgContent = MySvgUtil.generateGlobalSvgContent(listeTransformeeFigures);
         System.out.println(globalSvgContent);
+        */
+
     }
 
     static void premiersTests() {
