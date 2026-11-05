@@ -1,9 +1,7 @@
 package tp;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.function.Predicate;
 
 
 public class MyApp1 {
@@ -92,6 +90,12 @@ public class MyApp1 {
         //Collections.sort(listePersonnes,(p1,p2) -> p2.getAge() - p1.getAge());
         Collections.sort(listePersonnes,Personne::comparerParAgeDecroissant);
         System.out.println("listePersonnes triée par age décroissant = " + listePersonnes);
+
+        Map<String, Predicate<Personne>> mapPredicateParAge = new java.util.HashMap<>();
+        mapPredicateParAge.put("0-29", p -> p.getAge() >=0  && p.getAge() <= 29);
+        mapPredicateParAge.put("30-99", p -> p.getAge() >= 30 && p.getAge() <= 99);
+        Map<String, List<Personne>> mapPersonnesParTrancheAge = MyFunctionalUtil.partionner(listePersonnes,mapPredicateParAge);
+        System.out.println("mapPersonnesParTrancheAge = " + mapPersonnesParTrancheAge);
     }
 
 }
