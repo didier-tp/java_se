@@ -1,5 +1,10 @@
 package tp;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -11,10 +16,32 @@ public class MyApp1 {
 
         //testPersonne();
         //testerCollectionPersonne();
-        testerStreamPersonne();
+        //testerStreamPersonne();
+        testDates();
     }
 
+    private static void testDates() {
 
+        LocalDateTime maintenant = LocalDateTime.now();
+        System.out.println("maintenant = " + maintenant);
+        String maintenantAsString=maintenant.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+        System.out.println("maintenantAsString = " + maintenantAsString);
+
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Entrez une première date (jj/mm/aaaa) : ");
+        String dateStr = reader.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date1 = LocalDate.parse(dateStr, formatter);
+        System.out.println("Entrez une seconde date (jj/mm/aaaa) : ");
+        dateStr = reader.nextLine();
+        LocalDate date2 = LocalDate.parse(dateStr, formatter);
+        Period p1 = Period.between(date1, date2) ;
+        System.out.println("periode entre les deux dates:" + p1); //ex : P1M6D pour une Période de 1 Month et 6 Days
+        long periodeEnNombreDeJours = ChronoUnit.DAYS.between(date1, date2);
+        System.out.println("nombre de jours entre les deux dates:" + periodeEnNombreDeJours);
+
+
+    }
 
 
     public static void testPersonne(){
