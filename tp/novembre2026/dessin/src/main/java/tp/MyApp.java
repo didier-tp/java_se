@@ -100,13 +100,6 @@ public class MyApp {
                             else if(typeFig.equals("Rectangle")) return (fig instanceof Rectangle);
                             else if(typeFig.equals("Ligne")) return (fig instanceof Ligne);
                             else return false;
-                            /*
-                            switch (typeFig) {
-                                case "Cercle" -> { return fig instanceof Cercle; }
-                                case "Rectangle" -> { return fig instanceof Rectangle; }
-                                case "Ligne" -> { return fig instanceof Ligne; }
-                                default -> { return false; }
-                            }*/
                         })
                         //.collect(Collectors.toList());
                         .toList();
