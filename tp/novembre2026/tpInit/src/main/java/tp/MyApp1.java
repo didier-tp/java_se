@@ -89,7 +89,8 @@ public class MyApp1 {
                 (p1.getNom()!=null)?p1.getNom().toLowerCase().compareTo(p2.getNom().toLowerCase()):-1);
         System.out.println("listePersonnes triée par nom croissant = " + listePersonnes);
         //Collections.sort(listePersonnes,new ComparateurDePersonneParAgeDecroissant());
-        Collections.sort(listePersonnes,(p1,p2) -> p2.getAge() - p1.getAge());
+        //Collections.sort(listePersonnes,(p1,p2) -> p2.getAge() - p1.getAge());
+        Collections.sort(listePersonnes,Personne::comparerParAgeDecroissant);
         System.out.println("listePersonnes triée par age décroissant = " + listePersonnes);
     }
 

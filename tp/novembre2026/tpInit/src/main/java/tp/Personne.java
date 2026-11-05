@@ -31,6 +31,11 @@ public class Personne {
         this.poids = poids;
     }
 
+    //pour pouvoir écrire ailleurs  Collections.sort(listePersonnes,Personne::comparerParAgeDecroissant);
+    public static int comparerParAgeDecroissant(Personne p1, Personne p2){
+        return Integer.compare(p2.getAge(), p1.getAge());
+    }
+
     public Personne(String nom, int age, Double poids,Genre genre) {
         this(nom,age,poids);
         this.genre = genre;
