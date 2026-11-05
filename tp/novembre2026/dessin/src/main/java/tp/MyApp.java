@@ -55,7 +55,10 @@ public class MyApp {
                 log.error("coeffZoom aura la valeur par défaut de 1.0");
             }
         }
-        log.debug("dx=%d , dy=%d , coeffZoom=%f\n", dx, dy, coeffZoom);
+        String typeFigArgsAsString = mapArgs.get("typeFig");
+        if(typeFigArgsAsString != null)
+            typeFig = typeFigArgsAsString;
+        log.debug("dx=%d , dy=%d , coeffZoom=%f , typeFig=%s\n", dx, dy, coeffZoom,typeFig);
         //...
 
         enchainerTransformationsEtGenerationFichierSvg(coeffZoom,dx,dy,typeFig);
@@ -86,9 +89,27 @@ public class MyApp {
         List<Figure2D> listeTransformeeFigures =
                 listeInitialeFigures.stream()
         //effecter une premiere transformation de type zoomer(coeffZoom)
+                        .map(fig -> { fig.zoomer(coeffZoom); return fig; })
         //effecter une seconde transformation de type translation(dx,dy)
+                        .map(fig -> { fig.translater(dx,dy); return fig; })
         //filtrer selon le type de figure (typeFig , ex :"Cercle") via un test de type instanceof ...
-                        .collect(Collectors.toList());
+                        .filter(fig -> {
+                            if(typeFig == null) return true;
+                            //else return fig.getClass().getSimpleName().equals(typeFig);
+                            else if(typeFig.equals("Cercle")) return (fig instanceof Cercle);
+                            else if(typeFig.equals("Rectangle")) return (fig instanceof Rectangle);
+                            else if(typeFig.equals("Ligne")) return (fig instanceof Ligne);
+                            else return false;
+                            /*
+                            switch (typeFig) {
+                                case "Cercle" -> { return fig instanceof Cercle; }
+                                case "Rectangle" -> { return fig instanceof Rectangle; }
+                                case "Ligne" -> { return fig instanceof Ligne; }
+                                default -> { return false; }
+                            }*/
+                        })
+                        //.collect(Collectors.toList());
+                        .toList();
         //futur MySvgUtil.generateSvgFile(listeTransformeeFigures, "dessin2.svg");
         String globalSvgContent = MySvgUtil.generateGlobalSvgContent(listeTransformeeFigures);
         System.out.println(globalSvgContent);
