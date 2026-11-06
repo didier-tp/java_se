@@ -19,11 +19,14 @@ public class TestPersonRepository {
     }
 
     @Test
-    public void testFindById(){
-        Optional<PersonEntity> personEntityOptional = this.personRepository.findById(1L);
-        //hypothese : table avec un element existant d'id =1
+    public void testFindByIdAfterInsert(){
+        PersonEntity newPers = new PersonEntity("toto",44,70.7,null);
+        PersonEntity insertedPers = this.personRepository.insert(newPers);
+        Long newPk = insertedPers.getId();
+        log.trace("insertedPers person  : " + insertedPers + " of id="+newPk);
+        Optional<PersonEntity> personEntityOptional = this.personRepository.findById(newPk);
         assertTrue(personEntityOptional.isPresent());
-        log.trace("person 1 : " + personEntityOptional.get().toString());
+        log.trace("reloaded person  : " + personEntityOptional.get().toString());
     }
 
 }

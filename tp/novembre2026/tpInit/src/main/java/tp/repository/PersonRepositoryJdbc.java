@@ -33,6 +33,7 @@ public class PersonRepositoryJdbc implements PersonRepository {
     }
 
 
+
     @Override
     public Optional<PersonEntity> findById(Long id) {
         Optional<PersonEntity> personEntityOptional = Optional.empty();
@@ -66,9 +67,32 @@ public class PersonRepositoryJdbc implements PersonRepository {
 
     }
 
+    private Long recupValeurAutoIncrPk(PreparedStatement pst){
+        Long pk=null;
+        try {
+            ResultSet rsKeys = pst.getGeneratedKeys();
+            if(rsKeys.next()){ pk= rsKeys.getLong(1) ; /*rsKeys.getInt(1);*/}
+        } catch (SQLException e) {e.printStackTrace();}
+        return pk;
+    }
+
     @Override
     public PersonEntity insert(PersonEntity p) {
-        return null;
+        try(Connection cn = getConnection()){
+            PreparedStatement pstmt = cn.prepareStatement("INSERT INTO personne(nom,age,poids) VALUES(?,?,?)",
+                                                          Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1,p.getNom()); //1 pour ? numéro1
+            pstmt.setInt(2,p.getAge());
+            pstmt.setDouble(3,p.getPoids());
+            pstmt.executeUpdate();//avec auto increment postgres sur colonne id de type SERIAL
+            long pk = this.recupValeurAutoIncrPk(pstmt);
+            p.setId(pk);
+            pstmt.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        //automatic cn.close via automatic finally
+        return p; //with id auto incrémenté (plus null)
     }
 
     @Override
