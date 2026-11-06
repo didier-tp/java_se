@@ -2,9 +2,7 @@ package tp.repository;
 
 import tp.entity.PersonEntity;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -37,7 +35,25 @@ public class PersonRepositoryJdbc implements PersonRepository {
 
     @Override
     public Optional<PersonEntity> findById(Long id) {
-        return Optional.empty();
+        Optional<PersonEntity> personEntityOptional = Optional.empty();
+        try(Connection cn = getConnection()){
+            PreparedStatement pstmt = cn.prepareStatement("SELECT * FROM personne WHERE id=?");
+            pstmt.setLong(1,id); //1 pour ? numéro1
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                personEntityOptional = Optional.of(new PersonEntity(rs.getString("nom"),
+                                                                    rs.getInt("age"),
+                                                                    rs.getDouble("poids"),
+                                                                    rs.getLong("id") )
+                                                  );
+            }
+            rs.close();
+            pstmt.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        //automatic cn.close via automatic finally
+        return personEntityOptional;
     }
 
     @Override
